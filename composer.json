@@ -1,0 +1,27 @@
+{
+  "name": "pixelant/pxa-site-choice-recommendation",
+  "description": "Suggest localized version of site depends on user location and user language.",
+  "type": "typo3-cms-extension",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Pixelant",
+      "email": "info@pixelant.net",
+      "homepage": "https://www.pixelant.net",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "typo3/cms-core": "^8.7 || ^9.5",
+    "php": ">=7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pixelant\\PxaSiteChoiceRecommendation\\": "Classes/"
+    }
+  },
+  "replace": {
+    "pxa_site_choice_recommendation": "self.version",
+    "typo3-ter/pxa-site-choice-recommendation": "self.version"
+  }
+}

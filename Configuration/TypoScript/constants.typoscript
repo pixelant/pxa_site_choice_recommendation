@@ -1,0 +1,10 @@
+plugin.tx_pxasitechoicerecommendation {
+    view {
+        # cat=plugin.tx_pxasitechoicerecommendation/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:pxa_site_choice_recommendation/Resources/Private/Templates/
+        # cat=plugin.tx_pxasitechoicerecommendation/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:pxa_site_choice_recommendation/Resources/Private/Partials/
+        # cat=plugin.tx_pxasitechoicerecommendation/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:pxa_site_choice_recommendation/Resources/Private/Layouts/
+    }
+}

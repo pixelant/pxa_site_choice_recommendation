@@ -1,0 +1,15 @@
+plugin.tx_pxasitechoicerecommendation {
+    view {
+        templateRootPaths {
+            10 = {$plugin.tx_pxasitechoicerecommendation.view.templateRootPath}
+        }
+
+        partialRootPaths {
+            10 = {$plugin.tx_pxasitechoicerecommendation.view.partialRootPath}
+        }
+
+        layoutRootPaths {
+            10 = {$plugin.tx_pxasitechoicerecommendation.view.layoutRootPath}
+        }
+    }
+}
