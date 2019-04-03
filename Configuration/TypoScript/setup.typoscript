@@ -13,3 +13,17 @@ plugin.tx_pxasitechoicerecommendation {
         }
     }
 }
+
+[globalVar = LIT:1 = {$plugin.tx_pxasitechoicerecommendation.settings.includeDefaultAssests}]
+    page {
+        includeCSS {
+            pxa_site_choice_recommendation_bar = EXT:pxa_site_choice_recommendation/Reources/Public/Css/bar.css
+        }
+        includeJSFooterlibs {
+            pxaSiteChoiceRecommendation = EXT:pxa_site_choice_recommendation/Reources/Public/Js/PxaSiteChoiceRecommendation.js
+        }
+        includeJSFooter {
+            pxa_site_choice_recommendation_init = EXT:pxa_site_choice_recommendation/Reources/Public/Js/pxa_site_choice_recommendation_init.js
+        }
+    }
+[end]

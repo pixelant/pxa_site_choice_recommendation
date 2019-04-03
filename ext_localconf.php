@@ -6,7 +6,7 @@ defined('TYPO3_MODE') || die('Access denied.');
         'Pixelant.pxa_site_choice_recommendation',
         'choice',
         [
-            'ChoiceRecommendation' => 'bar'
+            'ChoiceRecommendation' => 'recommendationBar'
         ]
     );
 })();
