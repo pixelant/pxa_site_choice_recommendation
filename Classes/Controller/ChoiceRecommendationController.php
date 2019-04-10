@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Pixelant\PxaSiteRecommendation\Controller;
+namespace Pixelant\PxaSiteChoiceRecommendation\Controller;
 
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -13,6 +13,10 @@ class ChoiceRecommendationController extends ActionController
 {
     public function recommendationBarAction()
     {
-        
+        $visible = true;
+        $settings = $this->settings['jsBar'] ?? [];
+        $html = $this->view->render();
+
+        return json_encode(compact('visible', 'settings', 'html'));
     }
 }

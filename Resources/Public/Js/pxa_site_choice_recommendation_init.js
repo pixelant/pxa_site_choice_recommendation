@@ -1,6 +1,6 @@
 (function () {
     let siteChoiceRecommendation = new PxaSiteChoiceRecommendation();
-    let bar = siteChoiceRecommendation.loadBar();
 
-    console.log(bar);
+    // Load with default bar processing
+    siteChoiceRecommendation.loadBar();
 })();

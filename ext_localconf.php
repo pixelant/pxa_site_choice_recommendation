@@ -1,10 +1,13 @@
 <?php
 defined('TYPO3_MODE') || die('Access denied.');
 
-(function() {
+(function () {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Pixelant.pxa_site_choice_recommendation',
-        'choice',
+        'Choice',
+        [
+            'ChoiceRecommendation' => 'recommendationBar'
+        ],
         [
             'ChoiceRecommendation' => 'recommendationBar'
         ]
