@@ -1,6 +1,10 @@
 <?php
+
 namespace Pixelant\PxaSiteChoiceRecommendation\Domain\Model;
 
+
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /***
  *
@@ -9,46 +13,46 @@ namespace Pixelant\PxaSiteChoiceRecommendation\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2019 
+ *  (c) 2019
  *
  ***/
+
 /**
  * SiteChoice
  */
-class SiteChoice extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class SiteChoice extends AbstractEntity
 {
-
     /**
      * name
-     * 
+     *
      * @var string
      */
     protected $name = '';
 
     /**
      * maxItems
-     * 
+     *
      * @var int
      */
     protected $maxItems = 0;
 
     /**
      * showSplashPage
-     * 
+     *
      * @var bool
      */
     protected $showSplashPage = false;
 
     /**
      * splashPageLink
-     * 
+     *
      * @var string
      */
     protected $splashPageLink = '';
 
     /**
      * Available choices
-     * 
+     *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice>
      * @cascade remove
      */
@@ -69,7 +73,7 @@ class SiteChoice extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Do not modify this method!
      * It will be rewritten on each save in the extension builder
      * You may modify the constructor of this class instead
-     * 
+     *
      * @return void
      */
     protected function initStorageObjects()
@@ -78,138 +82,108 @@ class SiteChoice extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the name
-     * 
-     * @return string $name
+     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * Sets the name
-     * 
      * @param string $name
-     * @return void
      */
-    public function setName($name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
     /**
-     * Returns the maxItems
-     * 
-     * @return int $maxItems
+     * @return int
      */
-    public function getMaxItems()
+    public function getMaxItems(): int
     {
         return $this->maxItems;
     }
 
     /**
-     * Sets the maxItems
-     * 
      * @param int $maxItems
-     * @return void
      */
-    public function setMaxItems($maxItems)
+    public function setMaxItems(int $maxItems): void
     {
         $this->maxItems = $maxItems;
     }
 
     /**
-     * Returns the showSplashPage
-     * 
-     * @return bool $showSplashPage
+     * @return bool
      */
-    public function getShowSplashPage()
+    public function isShowSplashPage(): bool
     {
         return $this->showSplashPage;
     }
 
     /**
-     * Sets the showSplashPage
-     * 
      * @param bool $showSplashPage
-     * @return void
      */
-    public function setShowSplashPage($showSplashPage)
+    public function setShowSplashPage(bool $showSplashPage): void
     {
         $this->showSplashPage = $showSplashPage;
     }
 
     /**
-     * Returns the boolean state of showSplashPage
-     * 
-     * @return bool
+     * @return string
      */
-    public function isShowSplashPage()
-    {
-        return $this->showSplashPage;
-    }
-
-    /**
-     * Returns the splashPageLink
-     * 
-     * @return string $splashPageLink
-     */
-    public function getSplashPageLink()
+    public function getSplashPageLink(): string
     {
         return $this->splashPageLink;
     }
 
     /**
-     * Sets the splashPageLink
-     * 
      * @param string $splashPageLink
-     * @return void
      */
-    public function setSplashPageLink($splashPageLink)
+    public function setSplashPageLink(string $splashPageLink): void
     {
         $this->splashPageLink = $splashPageLink;
     }
 
     /**
      * Adds a Choice
-     * 
+     *
      * @param \Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice $choice
      * @return void
      */
-    public function addChoice(\Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice $choice)
+    public function addChoice(\Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice $choice): void
     {
         $this->choices->attach($choice);
     }
 
     /**
      * Removes a Choice
-     * 
+     *
      * @param \Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice $choiceToRemove The Choice to be removed
      * @return void
      */
-    public function removeChoice(\Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice $choiceToRemove)
+    public function removeChoice(\Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice $choiceToRemove): void
     {
         $this->choices->detach($choiceToRemove);
     }
 
     /**
      * Returns the choices
-     * 
+     *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice> $choices
      */
-    public function getChoices()
+    public function getChoices(): ObjectStorage
     {
         return $this->choices;
     }
 
     /**
      * Sets the choices
-     * 
+     *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice> $choices
      * @return void
      */
-    public function setChoices(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $choices)
+    public function setChoices(ObjectStorage $choices)
     {
         $this->choices = $choices;
     }

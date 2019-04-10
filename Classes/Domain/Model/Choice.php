@@ -1,6 +1,8 @@
 <?php
+
 namespace Pixelant\PxaSiteChoiceRecommendation\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /***
  *
@@ -9,123 +11,104 @@ namespace Pixelant\PxaSiteChoiceRecommendation\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2019 
+ *  (c) 2019
  *
  ***/
+
 /**
  * Choice
  */
-class Choice extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Choice extends AbstractEntity
 {
 
     /**
      * title
-     * 
+     *
      * @var string
      */
     protected $title = '';
 
     /**
      * locale
-     * 
+     *
      * @var string
      */
     protected $locale = '';
 
     /**
      * languageUid
-     * 
+     *
      * @var int
      */
     protected $languageUid = 0;
 
     /**
      * link
-     * 
+     *
      * @var string
      */
     protected $link = '';
 
     /**
-     * Returns the title
-     * 
-     * @return string $title
+     * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * Sets the title
-     * 
      * @param string $title
-     * @return void
      */
-    public function setTitle($title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
     /**
-     * Returns the locale
-     * 
-     * @return string $locale
+     * @return string
      */
-    public function getLocale()
+    public function getLocale(): string
     {
         return $this->locale;
     }
 
     /**
-     * Sets the locale
-     * 
      * @param string $locale
-     * @return void
      */
-    public function setLocale($locale)
+    public function setLocale(string $locale): void
     {
         $this->locale = $locale;
     }
 
     /**
-     * Returns the languageUid
-     * 
-     * @return int $languageUid
+     * @return int
      */
-    public function getLanguageUid()
+    public function getLanguageUid(): int
     {
         return $this->languageUid;
     }
 
     /**
-     * Sets the languageUid
-     * 
      * @param int $languageUid
-     * @return void
      */
-    public function setLanguageUid($languageUid)
+    public function setLanguageUid(int $languageUid): void
     {
         $this->languageUid = $languageUid;
     }
 
     /**
-     * Returns the link
-     * 
-     * @return string $link
+     * @return string
      */
-    public function getLink()
+    public function getLink(): string
     {
         return $this->link;
     }
 
     /**
-     * Sets the link
-     * 
      * @param string $link
-     * @return void
      */
-    public function setLink($link)
+    public function setLink(string $link): void
     {
         $this->link = $link;
     }
