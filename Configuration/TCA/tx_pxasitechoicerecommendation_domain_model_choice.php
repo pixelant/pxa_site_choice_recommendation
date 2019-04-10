@@ -31,7 +31,7 @@ return [
     ],
     'palettes' => [
         'localePalette' => [
-            'showitem' => 'locale, language_uid'
+            'showitem' => 'country_isocode, language_isocode'
         ],
         'linkToPalette' => [
             'showitem' => 'link, language_layer_uid'
@@ -138,27 +138,23 @@ return [
                 'eval' => 'trim',
             ]
         ],
-        'locale' => [
+        'country_isocode' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.locale',
+            'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.country_isocode',
             'config' => [
                 'type' => 'input',
                 'size' => 10,
-                'eval' => 'trim'
+                'eval' => 'trim,required'
             ],
         ],
-        'language_uid' => [
+        'language_isocode' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.language_uid',
+            'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.language_isocode',
             'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'foreign_table' => 'sys_language',
-                'foreign_table_where' => 'ORDER BY sys_language.sorting',
-                'items' => [
-                    [ 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.none', 0 ],
-                ]
-            ]
+                'type' => 'input',
+                'size' => 10,
+                'eval' => 'trim,required'
+            ],
         ],
         'link' => [
             'exclude' => true,

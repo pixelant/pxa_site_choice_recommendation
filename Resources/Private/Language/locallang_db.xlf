@@ -7,7 +7,7 @@
 			    <source>Choices</source>
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.localePalette">
-			    <source>Enter locale manually or use system language</source>
+			    <source>Enter country ISO 3166-1 code and language locale</source>
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.linkToPalette">
 				<source>Link to external URL or connect to language layer</source>
@@ -39,11 +39,11 @@
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.title">
 				<source>Title</source>
 			</trans-unit>
-			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.locale">
-				<source>Locale</source>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.country_isocode">
+				<source>Country ISO 3166-1 code </source>
 			</trans-unit>
-			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.language_uid">
-				<source>Or language Uid</source>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.language_isocode">
+				<source>Language locale code</source>
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.none">
 				<source>None</source>

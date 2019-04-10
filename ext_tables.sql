@@ -38,8 +38,8 @@ CREATE TABLE tx_pxasitechoicerecommendation_domain_model_choice (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	title text,
-	locale varchar(255) DEFAULT '' NOT NULL,
-	language_uid int(11) DEFAULT '0' NOT NULL,
+	country_isocode varchar(55) DEFAULT '' NOT NULL,
+	language_isocode varchar(55) DEFAULT '' NOT NULL,
 	link varchar(255) DEFAULT '' NOT NULL,
 	language_layer_uid int(11) DEFAULT '0' NOT NULL,
 

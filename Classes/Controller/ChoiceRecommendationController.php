@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Pixelant\PxaSiteChoiceRecommendation\Controller;
 
+use Pixelant\PxaSiteChoiceRecommendation\Domain\Repository\SiteChoiceRepository;
+use Pixelant\PxaSiteChoiceRecommendation\Domain\Site\RootPage;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -12,16 +14,56 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 class ChoiceRecommendationController extends ActionController
 {
     /**
+     * @var SiteChoiceRepository
+     */
+    protected $siteChoiceRepository = null;
+
+    /**
+     * @var RootPage
+     */
+    protected $rootPage = null;
+
+    /**
+     * Inject repository
+     *
+     * @param SiteChoiceRepository $siteChoiceRepository
+     */
+    public function injectSiteChoiceRepository(SiteChoiceRepository $siteChoiceRepository): void
+    {
+        $this->siteChoiceRepository = $siteChoiceRepository;
+    }
+
+    /**
+     * Inject
+     *
+     * @param RootPage $rootPage
+     */
+    public function injectRootPage(RootPage $rootPage): void
+    {
+        $this->rootPage = $rootPage;
+    }
+
+    /**
      * Create site choice recommendation bar
      *
      * @return string JSON response
      */
     public function recommendationBarAction()
     {
-        $visible = true;
-        $settings = $this->settings['jsBar'] ?? [];
-        $html = $this->view->render();
+        $response = [
+            'visible' => false
+        ];
 
-        return json_encode(compact('visible', 'settings', 'html'));
+        $siteChoice = $this->siteChoiceRepository->findOneByRootPage(
+            $this->rootPage->getRootPageUid()
+        );
+
+        if ($siteChoice !== null) {
+            $visible = true;
+            $settings = $this->settings['jsBar'] ?? [];
+            $html = $this->view->render();
+        }
+
+        return json_encode($response);
     }
 }

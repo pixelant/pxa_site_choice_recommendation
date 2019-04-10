@@ -51,7 +51,7 @@ PXA_SITE_CHOICE_RECOMMENDATION_LOAD_BAR_JSON {
         xhtml_cleaning = 0
         additionalHeaders {
             10 {
-                header = Content-type:application/json
+               # header = Content-type:application/json
             }
         }
     }

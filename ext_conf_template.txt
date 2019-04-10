@@ -1,0 +1,4 @@
+# Settings
+#
+# cat=settings/enable/101; type=string; label=LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_be.xlf:ext.countryDbPath
+countryDbPath = EXT:pxa_site_choice_recommendation/Resources/Private/GeoIp2/GeoLite2-Country.mmdb
