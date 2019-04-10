@@ -6,6 +6,7 @@ CREATE TABLE tx_pxasitechoicerecommendation_domain_model_sitechoice (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	name varchar(255) DEFAULT '' NOT NULL,
+	root_pages varchar(255) DEFAULT '' NOT NULL,
 	max_items int(11) DEFAULT '0' NOT NULL,
 	show_splash_page smallint(5) unsigned DEFAULT '0' NOT NULL,
 	splash_page_link varchar(255) DEFAULT '' NOT NULL,

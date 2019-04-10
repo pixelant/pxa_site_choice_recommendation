@@ -22,7 +22,7 @@ return [
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, max_items, show_splash_page, splash_page_link, choices',
     ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, max_items, show_splash_page, splash_page_link, --div--;LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tab.choices, choices, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, root_pages, max_items, show_splash_page, splash_page_link, --div--;LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tab.choices, choices, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -162,6 +162,16 @@ return [
                     ]
                 ]
             ],
+        ],
+        'root_pages' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_sitechoice.root_pages',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'foreign_table' => 'pages',
+                'foreign_table_where' => 'pages.hidden=0 AND pages.deleted=0 AND pages.is_siteroot=1',
+            ]
         ],
         'choices' => [
             'exclude' => true,

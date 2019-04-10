@@ -30,6 +30,9 @@
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.choices">
 				<source>Choices</source>
 			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.root_pages">
+			    <source>Connect to sites</source>
+			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice">
 				<source>Choice</source>
 			</trans-unit>
