@@ -11,6 +11,11 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  */
 class ChoiceRecommendationController extends ActionController
 {
+    /**
+     * Create site choice recommendation bar
+     *
+     * @return string JSON response
+     */
     public function recommendationBarAction()
     {
         $visible = true;

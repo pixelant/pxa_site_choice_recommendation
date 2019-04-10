@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-04-10T11:28:21Z" product-name="pxa_site_choice_recommendation">
+		<header/>
+		<body>
+			<trans-unit id="title.description">
+				<source>Title variants(each in a row) for different languages (Title|locale)</source>
+			</trans-unit>
+			<trans-unit id="locale.description">
+				<source>Locale of choice. Would show choice higher in list on match.</source>
+			</trans-unit>
+			<trans-unit id="language_uid.description">
+				<source>You can select system language instead of locale.</source>
+			</trans-unit>
+			<trans-unit id="link.description">
+				<source>External link</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-04-10T11:28:21Z" product-name="pxa_site_choice_recommendation">
+		<header/>
+		<body>
+			<trans-unit id="name.description">
+				<source>Name of configuration</source>
+			</trans-unit>
+			<trans-unit id="max_items.description">
+				<source>Max items in selection list</source>
+			</trans-unit>
+			<trans-unit id="show_splash_page.description">
+				<source>Show link on splash page if amount of items reached limit</source>
+			</trans-unit>
+			<trans-unit id="splash_page_link.description">
+				<source>Splash page link</source>
+			</trans-unit>
+			<trans-unit id="choices.description">
+				<source>Available choices</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

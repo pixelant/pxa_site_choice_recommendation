@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-04-10T11:28:21Z" product-name="pxa_site_choice_recommendation">
+		<header/>
+		<body>
+			<trans-unit id="tab.choices">
+			    <source>Choices</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.localePalette">
+			    <source>Enter locale manually or use system language</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.linkToPalette">
+				<source>Link to external URL or connect to language layer</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice">
+				<source>Site Choice Configuration</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.max_items">
+				<source>Max Items</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.show_splash_page">
+				<source>Show Splash Page</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.splash_page_link">
+				<source>Splash Page Link</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.choices">
+				<source>Choices</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice">
+				<source>Choice</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.locale">
+				<source>Locale</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.language_uid">
+				<source>Or language Uid</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.none">
+				<source>None</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.link">
+				<source>Link</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.language_layer_uid">
+			    <source>Language layer</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
