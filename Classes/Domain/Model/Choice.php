@@ -29,18 +29,14 @@ class Choice extends AbstractEntity
     protected $title = '';
 
     /**
-     * locale
-     *
      * @var string
      */
-    protected $locale = '';
+    protected $countryIsocode = '';
 
     /**
-     * languageUid
-     *
-     * @var int
+     * @var string
      */
-    protected $languageUid = 0;
+    protected $languageIsocode = '';
 
     /**
      * link
@@ -48,6 +44,19 @@ class Choice extends AbstractEntity
      * @var string
      */
     protected $link = '';
+
+    /**
+     * @var int
+     */
+    protected $languageLayerUid = 0;
+
+    /**
+     * Is not a DB field
+     * Dynamically set when sorting choices by priority
+     *
+     * @var float
+     */
+    protected $priority = 0.0;
 
     /**
      * @return string
@@ -68,38 +77,6 @@ class Choice extends AbstractEntity
     /**
      * @return string
      */
-    public function getLocale(): string
-    {
-        return $this->locale;
-    }
-
-    /**
-     * @param string $locale
-     */
-    public function setLocale(string $locale): void
-    {
-        $this->locale = $locale;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLanguageUid(): int
-    {
-        return $this->languageUid;
-    }
-
-    /**
-     * @param int $languageUid
-     */
-    public function setLanguageUid(int $languageUid): void
-    {
-        $this->languageUid = $languageUid;
-    }
-
-    /**
-     * @return string
-     */
     public function getLink(): string
     {
         return $this->link;
@@ -111,5 +88,87 @@ class Choice extends AbstractEntity
     public function setLink(string $link): void
     {
         $this->link = $link;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryIsocode(): string
+    {
+        return $this->countryIsocode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryIsocodeLowerCase(): string
+    {
+        return strtolower($this->countryIsocode);
+    }
+
+    /**
+     * @param string $countryIsocode
+     */
+    public function setCountryIsocode(string $countryIsocode): void
+    {
+        $this->countryIsocode = $countryIsocode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguageIsocode(): string
+    {
+        return $this->languageIsocode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguageIsocodeLowerKebabCase(): string
+    {
+        return strtolower(
+            str_replace('_', '-', $this->languageIsocode)
+        );
+    }
+
+    /**
+     * @param string $languageIsocode
+     */
+    public function setLanguageIsocode(string $languageIsocode): void
+    {
+        $this->languageIsocode = $languageIsocode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLanguageLayerUid(): int
+    {
+        return $this->languageLayerUid;
+    }
+
+    /**
+     * @param int $languageLayerUid
+     */
+    public function setLanguageLayerUid(int $languageLayerUid): void
+    {
+        $this->languageLayerUid = $languageLayerUid;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPriority(): float
+    {
+        return $this->priority;
+    }
+
+    /**
+     * @param float $priority
+     */
+    public function setPriority(float $priority): void
+    {
+        $this->priority = $priority;
     }
 }
