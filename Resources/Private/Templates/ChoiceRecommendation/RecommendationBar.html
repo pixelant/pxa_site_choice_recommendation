@@ -9,7 +9,7 @@
         </f:if>
         <select name="siteChoice">
             <f:for as="choice" each="{choiceBar.sortedChoicesWithLimit}">
-                <option value="href">{choice.localeTitle}</option>
+                <option value="{choice.url}">{choice.localeTitle}</option>
             </f:for>
         </select>
         <button data-accept-choice="1">
