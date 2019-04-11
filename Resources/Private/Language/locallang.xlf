@@ -3,7 +3,12 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2019-04-10T11:28:21Z" product-name="pxa_site_choice_recommendation">
 		<header/>
 		<body>
-
+			<trans-unit id="accept_choice">
+			    <source>Continue</source>
+			</trans-unit>
+			<trans-unit id="bar_close">
+			    <source>X</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
