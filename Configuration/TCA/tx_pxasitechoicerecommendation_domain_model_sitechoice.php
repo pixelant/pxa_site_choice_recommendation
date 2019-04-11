@@ -180,6 +180,7 @@ return [
                 'type' => 'inline',
                 'foreign_table' => 'tx_pxasitechoicerecommendation_domain_model_choice',
                 'foreign_field' => 'sitechoice',
+                'foreign_sortby' => 'sorting',
                 'maxitems' => 9999,
                 'appearance' => [
                     'collapseAll' => 1,
