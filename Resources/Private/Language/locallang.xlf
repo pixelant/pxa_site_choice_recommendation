@@ -12,6 +12,9 @@
 			<trans-unit id="site_choice_not_found">
 			    <source>Configuration was not found</source>
 			</trans-unit>
+			<trans-unit id="splash_page_link">
+			    <source>Show all variants</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
