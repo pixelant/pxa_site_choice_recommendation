@@ -5,7 +5,6 @@ namespace Pixelant\PxaSiteChoiceRecommendation\Controller;
 
 use Pixelant\PxaSiteChoiceRecommendation\Detector\Factory\AcceptLanguageDetectorFactory;
 use Pixelant\PxaSiteChoiceRecommendation\Detector\Factory\IpDetectorFactory;
-use Pixelant\PxaSiteChoiceRecommendation\Domain\DTO\Bar\ChoiceBar;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\DTO\Bar\ChoiceBarFactory;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Repository\SiteChoiceRepository;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Site\RootPage;
