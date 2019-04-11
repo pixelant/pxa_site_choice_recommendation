@@ -6,6 +6,16 @@
 			<trans-unit id="ext.countryDbPath">
 			    <source>Path to GeoIp2 database</source>
 			</trans-unit>
+
+			<trans-unit id="plugin.splash">
+			    <source>Site choice recommendation splash page</source>
+			</trans-unit>
+			<trans-unit id="flexform.sheetGeneral">
+			    <source>Configuration</source>
+			</trans-unit>
+			<trans-unit id="flexform.siteChoice">
+			    <source>Site choice configuration</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

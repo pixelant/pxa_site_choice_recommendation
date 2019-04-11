@@ -92,6 +92,19 @@ class ChoiceRecommendationController extends ActionController
     }
 
     /**
+     * Splash page action
+     */
+    public function splashPageAction()
+    {
+        list($siteChoiceUid) = array_reverse(
+            GeneralUtility::trimExplode('_', $this->settings['siteChoice'] ?? '')
+        );
+        $siteChoice = $this->siteChoiceRepository->findByUid((int)$siteChoiceUid);
+
+        $this->view->assign('siteChoice', $siteChoice);
+    }
+
+    /**
      * Return array of factory creators of availble locale and country ISO code detectors
      *
      * @return array

@@ -1,0 +1,27 @@
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_be.xlf:flexform.sheetGeneral</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.siteChoice>
+						<label>LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_be.xlf:flexform.siteChoice</label>
+						<config>
+							<type>group</type>
+							<internal_type>db</internal_type>
+							<allowed>tx_pxasitechoicerecommendation_domain_model_sitechoice</allowed>
+							<minitems>1</minitems>
+							<maxitems>1</maxitems>
+						</config>
+					</settings.siteChoice>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>

@@ -9,6 +9,9 @@
 			<trans-unit id="bar_close">
 			    <source>X</source>
 			</trans-unit>
+			<trans-unit id="site_choice_not_found">
+			    <source>Configuration was not found</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
