@@ -11,6 +11,7 @@ CREATE TABLE tx_pxasitechoicerecommendation_domain_model_sitechoice (
 	show_splash_page smallint(5) unsigned DEFAULT '0' NOT NULL,
 	splash_page_link varchar(255) DEFAULT '' NOT NULL,
 	choices int(11) unsigned DEFAULT '0' NOT NULL,
+	message text,
 
     tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
