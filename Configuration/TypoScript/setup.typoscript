@@ -30,9 +30,11 @@ plugin.tx_pxasitechoicerecommendation {
         includeCSS {
             pxa_site_choice_recommendation_bar = EXT:pxa_site_choice_recommendation/Resources/Public/Css/bar.css
         }
+
         includeJSFooterlibs {
             pxaSiteChoiceRecommendation = EXT:pxa_site_choice_recommendation/Resources/Public/Js/PxaSiteChoiceRecommendation.js
         }
+
         includeJSFooter {
             pxa_site_choice_recommendation_init = EXT:pxa_site_choice_recommendation/Resources/Public/Js/pxa_site_choice_recommendation_init.js
         }
@@ -51,7 +53,7 @@ PXA_SITE_CHOICE_RECOMMENDATION_LOAD_BAR_JSON {
         xhtml_cleaning = 0
         additionalHeaders {
             10 {
-               # header = Content-type:application/json
+                header = Content-type:application/json
             }
         }
     }
