@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Pixelant\PxaSiteChoiceRecommendation\Domain\DTO\Bar;
 
+use Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Model\SiteChoice;
+use Pixelant\PxaSiteChoiceRecommendation\SignalSlot\DispatcherTrait;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
@@ -12,6 +14,8 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class ChoiceBar implements BarInterface
 {
+    use DispatcherTrait;
+
     /**
      * @var SiteChoice
      */
@@ -56,7 +60,30 @@ class ChoiceBar implements BarInterface
      */
     public function sortChoiceListAccordingToPriority(): void
     {
-        // TODO: Implement sortChoiceListAccordingToPriority() method.
+        if ($this->sortedChoiceList === null) {
+            $this->sortedChoiceList = new ObjectStorage();
+
+            $choicesWithPriority = array_map(
+                [$this, 'setChoicePriority'],
+                $this->siteChoice->getChoices()->toArray()
+            );
+
+            usort(
+                $choicesWithPriority,
+                function ($choice1, $choice2) {
+                    if ($choice1->getPriority() == $choice2->getPriority()) {
+                        return 0;
+                    }
+                    return ($choice1->getPriority() > $choice2->getPriority()) ? -1 : 1;
+                }
+            );
+
+            foreach ($choicesWithPriority as $choice) {
+                $this->sortedChoiceList->attach($choice);
+            }
+
+            $this->emitSignal(__CLASS__, 'afterChoicesSortingByPriority', [$this->sortedChoiceList]);
+        }
     }
 
     /**
@@ -66,7 +93,32 @@ class ChoiceBar implements BarInterface
      */
     public function getSortedChoices(): ObjectStorage
     {
-        // TODO: Implement getSortedChoices() method.
+        return $this->sortedChoiceList;
+    }
+
+    /**
+     * Get sorted choices limited by max items
+     *
+     * @return ObjectStorage
+     */
+    public function getSortedChoicesWithLimit(): ObjectStorage
+    {
+        $maxItems = $this->siteChoice->getMaxItems();
+
+        if ($maxItems <= 0) {
+            return $this->sortedChoiceList;
+        }
+
+        $count = 0;
+        $limitedList = new ObjectStorage();
+        foreach ($this->sortedChoiceList as $choice) {
+            if ($maxItems < $count) {
+                $limitedList->attach($choice);
+            }
+            $choice++;
+        }
+
+        return $limitedList;
     }
 
     /**
@@ -75,8 +127,31 @@ class ChoiceBar implements BarInterface
      * @param array $priority
      * @return mixed
      */
-    public function setIsoLocalePriority(array $priority)
+    public function setIsoLocalePriority(array $priority): void
     {
         $this->priority = $priority;
+    }
+
+    /**
+     * Set priority for choice
+     *
+     * @param Choice $choice
+     * @return Choice
+     */
+    protected function setChoicePriority(Choice $choice): Choice
+    {
+        foreach ($this->priority as $code => $codePriority) {
+            $codeLowerCase = strtolower($code);
+
+            if ($codeLowerCase === $choice->getCountryIsocodeLowerCase()
+                || $codeLowerCase === $choice->getLanguageIsocodeLowerKebabCase()
+            ) {
+                $choice->setPriority(
+                    $choice->getPriority() + $codePriority
+                );
+            }
+        }
+
+        return $choice;
     }
 }

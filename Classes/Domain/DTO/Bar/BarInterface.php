@@ -39,10 +39,16 @@ interface BarInterface
     public function getSortedChoices(): ObjectStorage;
 
     /**
+     * Get sorted choices limited by max items
+     *
+     * @return ObjectStorage
+     */
+    public function getSortedChoicesWithLimit(): ObjectStorage;
+
+    /**
      * Set detectors country ISO codes and locales priority
      *
      * @param array $priority
-     * @return mixed
      */
-    public function setIsoLocalePriority(array $priority);
+    public function setIsoLocalePriority(array $priority): void;
 }
