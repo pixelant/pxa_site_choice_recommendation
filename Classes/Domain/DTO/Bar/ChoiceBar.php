@@ -112,10 +112,10 @@ class ChoiceBar implements BarInterface
         $count = 0;
         $limitedList = new ObjectStorage();
         foreach ($this->sortedChoiceList as $choice) {
-            if ($maxItems < $count) {
+            if ($maxItems > $count) {
                 $limitedList->attach($choice);
             }
-            $choice++;
+            $count++;
         }
 
         return $limitedList;
