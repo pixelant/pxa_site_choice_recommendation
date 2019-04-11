@@ -2,6 +2,9 @@
 
 namespace Pixelant\PxaSiteChoiceRecommendation\Domain\Model;
 
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /***
@@ -27,6 +30,13 @@ class Choice extends AbstractEntity
      * @var string
      */
     protected $title = '';
+
+    /**
+     * Parsed locale title from title text
+     *
+     * @var string
+     */
+    protected $localeTitle = '';
 
     /**
      * @var string
@@ -64,6 +74,66 @@ class Choice extends AbstractEntity
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    /**
+     * Parse choice title
+     *
+     * @return string
+     */
+    public function getLocaleTitle(): string
+    {
+        if (!empty($this->localeTitle)) {
+            return $this->localeTitle;
+        }
+
+        if (empty($this->title)) {
+            return '';
+        }
+        // Convert text to array
+        $titles = GeneralUtility::trimExplode("\n", $this->title, true);
+
+        // First title is default
+        list($defaultTitle) = GeneralUtility::trimExplode('|', $titles[0], true);
+        // If not frontend
+        if (TYPO3_MODE !== 'FE') {
+            return $defaultTitle;
+        }
+
+        // If typo3 9
+        if (isset($GLOBALS['TYPO3_REQUEST'])) {
+            /** @var SiteLanguage $siteLanguage */
+            $siteLanguage = $GLOBALS['TYPO3_REQUEST']->getAttribute('language');
+            $shortIsoCode = $siteLanguage->getTwoLetterIsoCode();
+            $locale = $siteLanguage->getLocale();
+        } else {
+            $config = $GLOBALS['TSFE']->config['config'];
+            $shortIsoCode = $config['language'] ?? '';
+            $locale = $config  ['locale_all'] ?? '';
+        }
+
+        // Remove encoding from locale
+        list($locale) = GeneralUtility::trimExplode('.', $locale);
+
+        // Make lowercase
+        $locale = strtolower($locale);
+        $shortIsoCode = strtolower($shortIsoCode);
+
+        // Set as default for now
+        $this->localeTitle = $defaultTitle;
+
+        // Try to find matching title
+        foreach ($titles as $titleVariant) {
+            list($variantText, $variantLocale) = GeneralUtility::trimExplode('|', $titleVariant, true);
+            $variantLocale = strtolower($variantLocale);
+            // Match
+            if ($variantLocale === $locale || $variantLocale === $shortIsoCode) {
+                $this->localeTitle = $variantText;
+                break;
+            }
+        }
+
+        return $this->localeTitle;
     }
 
     /**
