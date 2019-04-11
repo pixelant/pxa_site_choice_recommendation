@@ -9,6 +9,7 @@ use Pixelant\PxaSiteChoiceRecommendation\Domain\DTO\Bar\ChoiceBar;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\DTO\Bar\ChoiceBarFactory;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Repository\SiteChoiceRepository;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Site\RootPage;
+use Pixelant\PxaSiteChoiceRecommendation\SignalSlot\DispatcherTrait;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -18,6 +19,8 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  */
 class ChoiceRecommendationController extends ActionController
 {
+    use DispatcherTrait;
+
     /**
      * @var SiteChoiceRepository
      */
@@ -29,11 +32,11 @@ class ChoiceRecommendationController extends ActionController
     protected $rootPage = null;
 
     /**
-     * Available detectors creators
+     * Available language detectors creators
      *
      * @var array
      */
-    protected $detectorCreators = [
+    protected $detectorFactoryCreators = [
         IpDetectorFactory::class,
         AcceptLanguageDetectorFactory::class
     ];
@@ -75,15 +78,37 @@ class ChoiceRecommendationController extends ActionController
 
         if ($siteChoice !== null) {
             $choiceBarFactory = GeneralUtility::makeInstance(ChoiceBarFactory::class);
-            $choiceBar = $choiceBarFactory->build($siteChoice, $this->detectorCreators);
+            $choiceBar = $choiceBarFactory->build($siteChoice, $this->getAvailableDetectorFactoryCreators());
 
             $this->view->assign('choiceBar', $choiceBar);
 
-            $response['visible'] = true;
-            $response['settings'] = $this->settings['jsBar'] ?? [];
-            $response['html'] = $this->view->render();
+            $response = [
+                'visible' => true,
+                'settings' => $this->settings['jsBar'] ?? [],
+                'html' => $this->view->render()
+            ];
         }
 
         return json_encode($response);
+    }
+
+    /**
+     * Return array of factory creators of availble locale and country ISO code detectors
+     *
+     * @return array
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
+     */
+    protected function getAvailableDetectorFactoryCreators()
+    {
+        $detectorFactoryCreators = $this->detectorFactoryCreators;
+
+        $signalArguments = [
+            'detectorFactoryCreators' => &$detectorFactoryCreators
+        ];
+
+        $this->emitSignal(__CLASS__, 'beforeReturningAvailableDetectorFactoryCreators', $signalArguments);
+
+        return $detectorFactoryCreators;
     }
 }
