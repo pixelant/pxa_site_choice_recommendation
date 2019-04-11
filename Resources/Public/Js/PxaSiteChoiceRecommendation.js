@@ -1,15 +1,22 @@
 PxaSiteChoiceRecommendation = function () {
+
+    const COOKIE_NAME = 'pxa_site_choice_bar_hide';
+
     /**
      * @constructor
      */
-    function PxaSiteChoiceRecommendation()
-    {
+    function PxaSiteChoiceRecommendation() {
         // Ajax loading bar url
         this.ajaxUrl = '/?type=8790341';
         // Default settings
         this._defaultSettings = {
             querySelector: 'body',
-            insertMethod: 'insertBefore'
+            insertMethod: 'insertBefore',
+
+            /** Bar elements Dom selectors **/
+            selectBox: 'select',
+            acceptButton: '[data-accept-choice="1"]',
+            closeButton: '[data-close="1"]',
         }
     }
 
@@ -47,17 +54,30 @@ PxaSiteChoiceRecommendation = function () {
     };
 
     /**
+     * Check if bar proposal was already shown
+     *
+     * @return {boolean}
+     */
+    proto.isBarEnabled = function () {
+        let cookieValue = parseInt(this.getCookie(COOKIE_NAME));
+
+        return cookieValue !== 1;
+    };
+
+    /**
      * Default bar processing
      *
      * @param response
      * @private
      */
     proto._defaultProcessBarResponse = function (response) {
-        if (response.visible) {
-            let settings = response.settings || this.__getDefaultSettings();
+        let self = this;
 
-            let querySelector = response.settings.querySelector || this.__getDefaultSettings('querySelector'),
-                insertMethod = response.settings.insertMethod || this.__getDefaultSettings('insertMethod'),
+        if (response.visible) {
+            let settings = response.settings || this.getDefaultSettings();
+
+            let querySelector = this.getSettingValueOrDefault(settings, 'querySelector'),
+                insertMethod = this.getSettingValueOrDefault(settings, 'insertMethod'),
                 bar = this.__htmlToElement(response.html);
 
             let parentDom = document.querySelector(querySelector);
@@ -67,7 +87,65 @@ PxaSiteChoiceRecommendation = function () {
             } else {
                 parentDom[insertMethod](bar);
             }
+
+            // Attach events to bar
+            let selectBox = bar.querySelector(this.getSettingValueOrDefault(settings, 'selectBox')),
+                acceptButton = bar.querySelector(this.getSettingValueOrDefault(settings, 'acceptButton')),
+                closeButton = bar.querySelector(this.getSettingValueOrDefault(settings, 'closeButton'));
+
+            acceptButton.onclick = function () {
+                self._acceptClick(selectBox);
+            };
+            closeButton.onclick = function () {
+                self._closeClick(bar);
+            };
         }
+    };
+
+    /**
+     * Set cookie
+     *
+     * @param cName
+     * @param value
+     * @param exdays
+     */
+    proto.setCookie = function (cName, value, exdays) {
+        let exdate = new Date();
+
+        exdate.setDate(exdate.getDate() + exdays);
+        let cValue = encodeURIComponent(value) + ((exdays === null) ? '' : '; expires=' + exdate.toUTCString()) + '; path=/';
+        document.cookie = cName + '=' + cValue;
+    };
+
+    /**
+     * Get cookie
+     *
+     * @param cName
+     * @return {string}|{boolean}
+     */
+    proto.getCookie = function (cName) {
+        let i, x, y, ARRcookies = document.cookie.split(';');
+        for (i = 0; i < ARRcookies.length; i++) {
+            x = ARRcookies[i].substr(0, ARRcookies[i].indexOf('='));
+            y = ARRcookies[i].substr(ARRcookies[i].indexOf('=') + 1);
+            x = x.replace(/^\s+|\s+$/g, '');
+            if (x === cName) {
+                return decodeURIComponent(y);
+            }
+        }
+
+        return false;
+    };
+
+    /**
+     * Get value from settigns or return default value
+     * @param settings
+     * @param setting
+     * @return {*|string|Object}
+     * @private
+     */
+    proto.getSettingValueOrDefault = function (settings, setting) {
+        return settings[setting] || this.getDefaultSettings(setting);
     };
 
     /**
@@ -77,12 +155,46 @@ PxaSiteChoiceRecommendation = function () {
      * @return {string|object}
      * @private
      */
-    proto.__getDefaultSettings = function (concreteSetting) {
+    proto.getDefaultSettings = function (concreteSetting) {
         if (typeof concreteSetting === 'string') {
             return this._defaultSettings[concreteSetting] || null;
         }
 
         return this._defaultSettings;
+    };
+
+    /**
+     * Set cookie that hides bar
+     */
+    proto.markBarAsHidden = function () {
+        this.setCookie(COOKIE_NAME, 1);
+    };
+
+    /**
+     * Action when user accept some language proposal
+     *
+     * @param selectBox
+     * @private
+     */
+    proto._acceptClick = function (selectBox) {
+        this.markBarAsHidden();
+
+        let url = selectBox.options[selectBox.selectedIndex].value;
+
+        if (url.length) {
+            window.location = url;
+        }
+    };
+
+    /**
+     * Hide bar
+     *
+     * @param bar
+     * @private
+     */
+    proto._closeClick = function (bar) {
+        bar.style.cssText = 'display:none;visibility:hidden;';
+        this.markBarAsHidden();
     };
 
     /**
