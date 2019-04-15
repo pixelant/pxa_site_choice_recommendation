@@ -2,8 +2,7 @@
 
 namespace Pixelant\PxaSiteChoiceRecommendation\Domain\Model;
 
-use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
+use Pixelant\PxaSiteChoiceRecommendation\Utility\MainUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -101,17 +100,7 @@ class Choice extends AbstractEntity
             return $defaultTitle;
         }
 
-        // If typo3 9
-        if (isset($GLOBALS['TYPO3_REQUEST'])) {
-            /** @var SiteLanguage $siteLanguage */
-            $siteLanguage = $GLOBALS['TYPO3_REQUEST']->getAttribute('language');
-            $shortIsoCode = $siteLanguage->getTwoLetterIsoCode();
-            $locale = $siteLanguage->getLocale();
-        } else {
-            $config = $GLOBALS['TSFE']->config['config'];
-            $shortIsoCode = $config['language'] ?? '';
-            $locale = $config  ['locale_all'] ?? '';
-        }
+        list('shortIsoCode' => $shortIsoCode, 'locale' => $locale) = MainUtility::getLocaleInfo();
 
         // Remove encoding from locale
         list($locale) = GeneralUtility::trimExplode('.', $locale);
