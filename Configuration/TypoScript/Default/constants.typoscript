@@ -1,6 +1,3 @@
-# customcategory=plugin.tx_pxasitechoicerecommendation=Site choice recommendation
-# customsubcategory=settings=Settings
-
 plugin.tx_pxasitechoicerecommendation {
     view {
         # cat=plugin.tx_pxasitechoicerecommendation/file; type=string; label=Path to template root (FE)
@@ -9,10 +6,5 @@ plugin.tx_pxasitechoicerecommendation {
         partialRootPath = EXT:pxa_site_choice_recommendation/Resources/Private/Partials/
         # cat=plugin.tx_pxasitechoicerecommendation/file; type=string; label=Path to template layouts (FE)
         layoutRootPath = EXT:pxa_site_choice_recommendation/Resources/Private/Layouts/
-    }
-
-    settings {
-        # cat=plugin.tx_pxasitechoicerecommendation/settings; type=boolean; label=Include default assets(JS & CSS)
-        includeDefaultAssests = 1
     }
 }

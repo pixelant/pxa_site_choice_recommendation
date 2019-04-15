@@ -22,25 +22,10 @@ plugin.tx_pxasitechoicerecommendation {
             # Use appendChild to insert at the end
             insertMethod = insertBefore
         }
+
+        showBarOnSplashPage = 0
     }
 }
-
-[globalVar = LIT:1 = {$plugin.tx_pxasitechoicerecommendation.settings.includeDefaultAssests}]
-    page {
-        includeCSS {
-            pxa_site_choice_recommendation_bar = EXT:pxa_site_choice_recommendation/Resources/Public/Css/bar.css
-        }
-
-        includeJSFooterlibs {
-            pxaSiteChoiceRecommendation = EXT:pxa_site_choice_recommendation/Resources/Public/Js/PxaSiteChoiceRecommendation.js
-        }
-
-        includeJSFooter {
-            pxa_site_choice_recommendation_init = EXT:pxa_site_choice_recommendation/Resources/Public/Js/pxa_site_choice_recommendation_init.js
-        }
-    }
-[end]
-
 
 PXA_SITE_CHOICE_RECOMMENDATION_LOAD_BAR_JSON = PAGE
 PXA_SITE_CHOICE_RECOMMENDATION_LOAD_BAR_JSON {

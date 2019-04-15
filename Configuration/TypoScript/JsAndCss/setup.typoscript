@@ -1,0 +1,13 @@
+page {
+    includeCSS {
+        pxa_site_choice_recommendation_bar = EXT:pxa_site_choice_recommendation/Resources/Public/Css/bar.css
+    }
+
+    includeJSFooterlibs {
+        pxaSiteChoiceRecommendation = EXT:pxa_site_choice_recommendation/Resources/Public/Js/PxaSiteChoiceRecommendation.js
+    }
+
+    includeJSFooter {
+        pxa_site_choice_recommendation_init = EXT:pxa_site_choice_recommendation/Resources/Public/Js/pxa_site_choice_recommendation_init.js
+    }
+}
