@@ -19,7 +19,11 @@ class SiteChoiceRepository extends Repository
     public function initializeObject()
     {
         $defaultQuerySettings = $this->objectManager->get(Typo3QuerySettings::class);
+
+        // Set own query settings in order to be able to get default language record
         $defaultQuerySettings->setRespectStoragePage(false);
+        $defaultQuerySettings->setRespectSysLanguage(false);
+        $defaultQuerySettings->setLanguageOverlayMode(false);
 
         $this->setDefaultQuerySettings($defaultQuerySettings);
     }
