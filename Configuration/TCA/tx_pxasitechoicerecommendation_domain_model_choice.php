@@ -167,7 +167,8 @@ return [
                 'fieldControl' => [
                     'linkPopup' => [
                         'options' => [
-                            'blindLinkOptions' => 'page,file,folder,mail'
+                            'blindLinkOptions' => 'page,file,folder,mail',
+                            'blindLinkFields' => 'class,target,title'
                         ]
                     ]
                 ]
