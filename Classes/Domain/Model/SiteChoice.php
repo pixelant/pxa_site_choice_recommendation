@@ -56,11 +56,6 @@ class SiteChoice extends AbstractEntity
     protected $rootPages = '';
 
     /**
-     * @var string
-     */
-    protected $message = '';
-
-    /**
      * Available choices
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice>
@@ -212,21 +207,5 @@ class SiteChoice extends AbstractEntity
     public function setRootPages(string $rootPages): void
     {
         $this->rootPages = $rootPages;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMessage(): string
-    {
-        return $this->message;
-    }
-
-    /**
-     * @param string $message
-     */
-    public function setMessage(string $message): void
-    {
-        $this->message = $message;
     }
 }

@@ -4,9 +4,7 @@
 
 <f:section name="main">
     <div id="pxa-site-choice">
-        <f:if condition="{choiceBar.siteChoice.message}">
-            <f:format.html>{choiceBar.siteChoice.message}</f:format.html>
-        </f:if>
+        <p><f:translate key="bar_text" /></p>
         <select name="siteChoice">
             <f:for as="choice" each="{choiceBar.sortedChoicesWithLimit}">
                 <option value="{choice.url}">{choice.localeTitle}</option>

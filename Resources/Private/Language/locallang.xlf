@@ -4,16 +4,19 @@
 		<header/>
 		<body>
 			<trans-unit id="accept_choice">
-			    <source>Continue</source>
+			    <source>Select</source>
+			</trans-unit>
+			<trans-unit id="bar_text">
+			    <source>Select region / country to access the website for your location.</source>
+			</trans-unit>
+			<trans-unit id="splash_page_link">
+				<source>Other country or territory</source>
 			</trans-unit>
 			<trans-unit id="bar_close">
 			    <source>X</source>
 			</trans-unit>
 			<trans-unit id="site_choice_not_found">
 			    <source>Configuration was not found</source>
-			</trans-unit>
-			<trans-unit id="splash_page_link">
-			    <source>Show all variants</source>
 			</trans-unit>
 		</body>
 	</file>

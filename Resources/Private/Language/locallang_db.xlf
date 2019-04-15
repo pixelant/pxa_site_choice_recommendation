@@ -27,9 +27,6 @@
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.splash_page_link">
 				<source>Splash Page Link</source>
 			</trans-unit>
-			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.message">
-			    <source>Message</source>
-			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.choices">
 				<source>Choices</source>
 			</trans-unit>

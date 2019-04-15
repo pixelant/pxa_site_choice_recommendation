@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="sv" datatype="plaintext" original="messages" date="2019-04-10T11:28:21Z" product-name="pxa_site_choice_recommendation">
+		<header/>
+		<body>
+			<trans-unit id="accept_choice">
+			    <target>Välj</target>
+			</trans-unit>
+			<trans-unit id="bar_text">
+			    <target>Välj region/land för önskad webbplats.</target>
+			</trans-unit>
+			<trans-unit id="splash_page_link">
+				<target>Annat land eller område</target>
+			</trans-unit>
+			<trans-unit id="bar_close">
+			    <target>X</target>
+			</trans-unit>
+			<trans-unit id="site_choice_not_found">
+			    <target>Konfigurationen hittades inte</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -26,7 +26,7 @@ return [
         '1' => ['showitem' =>
             'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title,
              --palette--;LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.localePalette;localePalette,
-             --palette--;LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.localePalette;linkToPalette,'
+             --palette--;LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.linkToPalette;linkToPalette,'
         ],
     ],
     'palettes' => [
