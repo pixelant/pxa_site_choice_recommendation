@@ -7,7 +7,7 @@ PxaSiteChoiceRecommendation = function () {
      */
     function PxaSiteChoiceRecommendation() {
         // Ajax loading bar url
-        this.ajaxUrl = '/?type=8790341';
+        this.ajaxUrl = '?type=8790341';
         // Default settings
         this._defaultSettings = {
             querySelector: 'body',
@@ -59,6 +59,12 @@ PxaSiteChoiceRecommendation = function () {
      * @return {boolean}
      */
     proto.isBarEnabled = function () {
+        if (typeof force_hide_site_choice_recommendation !== 'undefined'
+            && force_hide_site_choice_recommendation === 1
+        ) {
+            return false;
+        }
+
         let cookieValue = parseInt(this.getCookie(COOKIE_NAME));
 
         return cookieValue !== 1;
@@ -177,8 +183,6 @@ PxaSiteChoiceRecommendation = function () {
      * @private
      */
     proto._acceptClick = function (selectBox) {
-        this.markBarAsHidden();
-
         let url = selectBox.options[selectBox.selectedIndex].value;
 
         if (url.length) {

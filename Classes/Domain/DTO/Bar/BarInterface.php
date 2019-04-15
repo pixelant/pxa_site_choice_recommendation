@@ -51,4 +51,11 @@ interface BarInterface
      * @param array $priority
      */
     public function setIsoLocalePriority(array $priority): void;
+
+    /**
+     * Check if bar is visible
+     *
+     * @return bool
+     */
+    public function isVisible(): bool;
 }

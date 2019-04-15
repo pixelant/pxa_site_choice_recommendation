@@ -9,6 +9,7 @@ use Pixelant\PxaSiteChoiceRecommendation\Domain\DTO\Bar\ChoiceBarFactory;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Repository\SiteChoiceRepository;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Site\RootPage;
 use Pixelant\PxaSiteChoiceRecommendation\SignalSlot\DispatcherTrait;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -82,7 +83,7 @@ class ChoiceRecommendationController extends ActionController
             $this->view->assign('choiceBar', $choiceBar);
 
             $response = [
-                'visible' => true,
+                'visible' => $choiceBar->isVisible(),
                 'settings' => $this->settings['jsBar'] ?? [],
                 'html' => $this->view->render()
             ];
@@ -101,6 +102,9 @@ class ChoiceRecommendationController extends ActionController
         );
         $siteChoice = $this->siteChoiceRepository->findByUid((int)$siteChoiceUid);
 
+        if (intval($this->settings['showBarOnSplashPage'] ?? 0) === 0) {
+            $this->disableBarOnCurrentPage();
+        }
         $this->view->assign('siteChoice', $siteChoice);
     }
 
@@ -122,5 +126,12 @@ class ChoiceRecommendationController extends ActionController
         $this->emitSignal(__CLASS__, 'beforeReturningAvailableDetectorFactoryCreators', $signalArguments);
 
         return $detectorFactoryCreators;
+    }
+
+    protected function disableBarOnCurrentPage(): void
+    {
+        GeneralUtility::makeInstance(PageRenderer::class)->addHeaderData(
+            '<script>const force_hide_site_choice_recommendation=1;</script>'
+        );
     }
 }

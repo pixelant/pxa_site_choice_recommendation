@@ -6,6 +6,8 @@ namespace Pixelant\PxaSiteChoiceRecommendation\Domain\DTO\Bar;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Model\SiteChoice;
 use Pixelant\PxaSiteChoiceRecommendation\SignalSlot\DispatcherTrait;
+use Pixelant\PxaSiteChoiceRecommendation\Utility\MainUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
@@ -130,6 +132,29 @@ class ChoiceBar implements BarInterface
     public function setIsoLocalePriority(array $priority): void
     {
         $this->priority = $priority;
+    }
+
+    /**
+     * If top priority choice match current site, don't show bar
+     *
+     * @return bool
+     */
+    public function isVisible(): bool
+    {
+        if ($this->sortedChoiceList->count() === 0) {
+            return false;
+        }
+
+        /** @var Choice $topChoice */
+        $topChoice = $this->sortedChoiceList->current();
+
+        if ($topChoice->getLink()) {
+            $host = parse_url($topChoice->getLink(), PHP_URL_HOST);
+
+            return $host !== GeneralUtility::getIndpEnv('HTTP_HOST');
+        } else {
+            return $topChoice->getLanguageLayerUid() !== MainUtility::getSiteLanguageUid();
+        }
     }
 
     /**
