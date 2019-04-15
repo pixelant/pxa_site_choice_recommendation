@@ -128,8 +128,12 @@ class ChoiceRecommendationController extends ActionController
         return $detectorFactoryCreators;
     }
 
+    /**
+     * Add JS variable that make bar invisible
+     */
     protected function disableBarOnCurrentPage(): void
     {
+        // User header data in order to make sure it's on top of page
         GeneralUtility::makeInstance(PageRenderer::class)->addHeaderData(
             '<script>const force_hide_site_choice_recommendation=1;</script>'
         );
