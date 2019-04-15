@@ -11,13 +11,10 @@
             <f:for as="choice" each="{choiceBar.sortedChoicesWithLimit}">
                 <option value="{choice.url}">{choice.localeTitle}</option>
             </f:for>
+            <f:if condition="{choiceBar.siteChoice.showSplashPage} && {choiceBar.siteChoice.splashPageLink}">
+                <option value="{f:uri.typolink(parameter: choiceBar.siteChoice.splashPageLink)}"><f:translate key="splash_page_link" /></option>
+            </f:if>
         </select>
-
-        <f:if condition="{choiceBar.siteChoice.showSplashPage} && {choiceBar.siteChoice.splashPageLink}">
-            <f:link.typolink parameter="{choiceBar.siteChoice.splashPageLink}">
-                <f:translate key="splash_page_link" />
-            </f:link.typolink>
-        </f:if>
 
         <button data-accept-choice="1">
             <f:translate key="accept_choice" />
