@@ -169,7 +169,7 @@ class ChoiceBar implements BarInterface
             $codeLowerCase = strtolower($code);
 
             if ($codeLowerCase === $choice->getCountryIsocodeLowerCase()
-                || $codeLowerCase === $choice->getLanguageIsocodeLowerKebabCase()
+                || $codeLowerCase === $choice->getLanguageIsocodeLowerCase()
             ) {
                 $choice->setPriority(
                     $choice->getPriority() + $codePriority

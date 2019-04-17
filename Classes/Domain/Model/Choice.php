@@ -185,11 +185,9 @@ class Choice extends AbstractEntity
     /**
      * @return string
      */
-    public function getLanguageIsocodeLowerKebabCase(): string
+    public function getLanguageIsocodeLowerCase(): string
     {
-        return strtolower(
-            str_replace('_', '-', $this->languageIsocode)
-        );
+        return strtolower($this->languageIsocode);
     }
 
     /**
