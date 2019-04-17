@@ -4,22 +4,40 @@
 
 <f:section name="main">
     <div id="pxa-site-choice">
-        <p><f:translate key="bar_text" /></p>
-        <select name="siteChoice">
-            <f:for as="choice" each="{choiceBar.sortedChoicesWithLimit}">
-                <option value="{choice.url}">{choice.localeTitle}</option>
-            </f:for>
-            <f:if condition="{choiceBar.siteChoice.showSplashPage} && {choiceBar.siteChoice.splashPageLink}">
-                <option value="{f:uri.typolink(parameter: choiceBar.siteChoice.splashPageLink)}"><f:translate key="splash_page_link" /></option>
-            </f:if>
-        </select>
-
-        <button data-accept-choice="1">
-            <f:translate key="accept_choice" />
-        </button>
-        <button data-close="1">
-            <f:translate key="bar_close" />
-        </button>
-    </div>
+			<div class="site-choice__bar">
+				<div class="site-choice__bar-wrp">
+					<div class="site-choice__bar-caption">
+						<p class="site-choice__bar-caption-text"><f:translate key="bar_text" /></p>
+					</div>
+					<div class="site-choice__bar-actions">
+						<div class="site-choice__actions-wrp">
+							<div class="site-choice__select">
+								<span class="site-choice__selected-item">English</span>
+								<ul class="site-choice__items-list">
+									<f:for as="choice" each="{choiceBar.sortedChoicesWithLimit}">
+										<li class="site-choice__list-item">
+											<a href="{choice.url}" class="site-choice__item-link">{choice.localeTitle}</a>
+										</li>
+									</f:for>
+									<f:if condition="{choiceBar.siteChoice.showSplashPage} && {choiceBar.siteChoice.splashPageLink}">
+										<li class="site-choice__list-item">
+											<a href="{f:uri.typolink(parameter: choiceBar.siteChoice.splashPageLink)}" class="site-choice__item-link">
+												<f:translate key="splash_page_link" />
+											</a>
+										</li>
+									</f:if>
+								</ul>
+							</div>
+							<button class="site-choice__button-accept" data-accept-choice="1">
+									<f:translate key="accept_choice" />
+							</button>
+							<button class="site-choice__button-close" data-close="1">
+									<f:translate key="bar_close" />
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 </f:section>
 </html>
