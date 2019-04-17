@@ -142,18 +142,24 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.country_isocode',
             'config' => [
-                'type' => 'input',
-                'size' => 10,
-                'eval' => 'trim,required'
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.country_isocode.none', '']
+                ],
+                'itemsProcFunc' => \Pixelant\PxaSiteChoiceRecommendation\Service\TCA\SelectService::class . '->renderCountryIsoCodeSelectDropdown',
             ],
         ],
         'language_isocode' => [
             'exclude' => true,
             'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.language_isocode',
             'config' => [
-                'type' => 'input',
-                'size' => 10,
-                'eval' => 'trim,required'
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.language_isocode.none', '']
+                ],
+                'itemsProcFunc' => \Pixelant\PxaSiteChoiceRecommendation\Service\TCA\SelectService::class . '->renderLanguageIsoCodeSelectDropdown',
             ],
         ],
         'link' => [

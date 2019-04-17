@@ -40,10 +40,16 @@
 				<source>Title</source>
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.country_isocode">
-				<source>Country ISO 3166-1 code </source>
+				<source>Select country</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.country_isocode.none">
+			    <source>Ignore country check</source>
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.language_isocode">
-				<source>Language locale code</source>
+				<source>Select language</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.language_isocode.none">
+				<source>Ignore user language check</source>
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.none">
 				<source>None</source>

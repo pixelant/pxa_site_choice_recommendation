@@ -6,6 +6,9 @@
 			<trans-unit id="name.description">
 				<source>Name of configuration</source>
 			</trans-unit>
+			<trans-unit id="root_pages.description">
+			    <source>Select site where site bar should be available</source>
+			</trans-unit>
 			<trans-unit id="max_items.description">
 				<source>Max items in selection list</source>
 			</trans-unit>

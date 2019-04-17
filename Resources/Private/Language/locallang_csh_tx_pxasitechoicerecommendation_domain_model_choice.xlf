@@ -6,11 +6,14 @@
 			<trans-unit id="title.description">
 				<source>Title variants(each in a row) for different languages (Title|locale)</source>
 			</trans-unit>
-			<trans-unit id="locale.description">
-				<source>Locale of choice. Would show choice higher in list on match.</source>
+			<trans-unit id="country_isocode.description">
+				<source>Will match by IP check</source>
 			</trans-unit>
-			<trans-unit id="language_uid.description">
-				<source>You can select system language instead of locale.</source>
+			<trans-unit id="language_isocode.description">
+			    <source>Will match by user language check</source>
+			</trans-unit>
+			<trans-unit id="language_layer_uid.description">
+			    <source>Lead to language layer</source>
 			</trans-unit>
 			<trans-unit id="link.description">
 				<source>External link</source>
