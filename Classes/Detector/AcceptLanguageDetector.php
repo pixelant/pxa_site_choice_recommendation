@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Pixelant\PxaSiteChoiceRecommendation\Detector;
 
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 class AcceptLanguageDetector implements DetectorInterface
 {
     /**
@@ -61,9 +63,13 @@ class AcceptLanguageDetector implements DetectorInterface
         $languages = explode(',', $header);
         $result = [];
         foreach ($languages as $language) {
-            $lang = explode(';q=', $language);
-            // $lang == [language, weight], default weight = 1
-            $result[$lang[0]] = isset($lang[1]) ? floatval($lang[1]) : $this->defaultPriority;
+            // explode priority string "uk-UA;q=0.7" or "en;q=0.5"
+            $langParts = explode(';q=', $language);
+            // Parse short if it's in full format "uk-UA"
+            list($langShort) = GeneralUtility::trimExplode('-', $langParts[0], true);
+            if (!array_key_exists($langShort, $result)) {
+                $result[$langShort] = isset($langParts[1]) ? floatval($langParts[1]) : $this->defaultPriority;
+            }
         }
 
         arsort($result);
