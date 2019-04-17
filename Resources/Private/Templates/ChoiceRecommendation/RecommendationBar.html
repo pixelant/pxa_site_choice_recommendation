@@ -16,7 +16,9 @@
 								<ul class="site-choice__items-list">
 									<f:for as="choice" each="{choiceBar.sortedChoicesWithLimit}">
 										<li class="site-choice__list-item">
-											<a href="{choice.url}" class="site-choice__item-link">{choice.localeTitle}</a>
+											<a href="{choice.url}" class="site-choice__item-link">
+												{choice.localeTitle}
+											</a>
 										</li>
 									</f:for>
 									<f:if condition="{choiceBar.siteChoice.showSplashPage} && {choiceBar.siteChoice.splashPageLink}">
