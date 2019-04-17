@@ -67,6 +67,9 @@ class AcceptLanguageDetector implements DetectorInterface
             $langParts = explode(';q=', $language);
             // Parse short if it's in full format "uk-UA"
             list($langShort) = GeneralUtility::trimExplode('-', $langParts[0], true);
+
+            // Make sure it's lowercase
+            $langShort = strtolower($langShort);
             if (!array_key_exists($langShort, $result)) {
                 $result[$langShort] = isset($langParts[1]) ? floatval($langParts[1]) : $this->defaultPriority;
             }
