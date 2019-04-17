@@ -23,7 +23,7 @@ class IpDetector implements DetectorInterface
     /**
      * @var float
      */
-    protected $priority = 1.0;
+    protected $priority = 1.5;
 
     /**
      * IP address
