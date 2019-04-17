@@ -11,24 +11,30 @@
 					</div>
 					<div class="site-choice__bar-actions">
 						<div class="site-choice__actions-wrp">
-							<div class="site-choice__select">
-								<span class="site-choice__selected-item">English</span>
-								<ul class="site-choice__items-list">
-									<f:for as="choice" each="{choiceBar.sortedChoicesWithLimit}">
-										<li class="site-choice__list-item">
-											<a href="{choice.url}" class="site-choice__item-link">
-												{choice.localeTitle}
-											</a>
-										</li>
-									</f:for>
-									<f:if condition="{choiceBar.siteChoice.showSplashPage} && {choiceBar.siteChoice.splashPageLink}">
-										<li class="site-choice__list-item">
-											<a href="{f:uri.typolink(parameter: choiceBar.siteChoice.splashPageLink)}" class="site-choice__item-link">
-												<f:translate key="splash_page_link" />
-											</a>
-										</li>
-									</f:if>
-								</ul>
+							<div class="site-choice__select" data-site-choice-select="1">
+								<span class="site-choice__selected-item"
+                                      data-selected-item="1"
+                                      data-href="{choiceBar.highestPriorityChoice.url}">{choiceBar.highestPriorityChoice.localeTitle}</span>
+
+								<f:if condition="{choiceBar.siteChoice.splashPageLinkVisible} || {choiceBar.siteChoice.choices -> f:count()} > 1">
+                                    <ul class="site-choice__items-list">
+                                        <f:for as="choice" each="{choiceBar.sortedChoicesWithLimit}">
+                                            <li class="site-choice__list-item">
+                                                <a href="{choice.url}" class="site-choice__item-link" data-text="{choice.localeTitle}">
+                                                    <span><img src=""></span>
+                                                    {choice.localeTitle}
+                                                </a>
+                                            </li>
+                                        </f:for>
+                                        <f:if condition="{choiceBar.siteChoice.splashPageLinkVisible}">
+                                            <li class="site-choice__list-item">
+                                                <f:link.typolink parameter="{choiceBar.siteChoice.splashPageLink}" class="site-choice__item-link">
+                                                    <f:translate key="splash_page_link" />
+                                                </f:link.typolink>
+                                            </li>
+                                        </f:if>
+                                    </ul>
+								</f:if>
 							</div>
 							<button class="site-choice__button-accept" data-accept-choice="1">
 									<f:translate key="accept_choice" />

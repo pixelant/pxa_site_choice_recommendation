@@ -124,6 +124,18 @@ class ChoiceBar implements BarInterface
     }
 
     /**
+     * Return choice with highest priority
+     *
+     * @return Choice
+     */
+    public function getHighestPriorityChoice(): Choice
+    {
+        $this->sortedChoiceList->rewind();
+
+        return $this->sortedChoiceList->current();
+    }
+
+    /**
      * Set detectors country ISO codes and locales priority
      *
      * @param array $priority

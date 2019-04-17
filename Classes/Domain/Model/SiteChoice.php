@@ -208,4 +208,14 @@ class SiteChoice extends AbstractEntity
     {
         $this->rootPages = $rootPages;
     }
+
+    /**
+     * Check if splash page link should be visible
+     *
+     * @return bool
+     */
+    public function isSplashPageLinkVisible(): bool
+    {
+        return $this->isShowSplashPage() && !empty($this->getSplashPageLink());
+    }
 }

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Pixelant\PxaSiteChoiceRecommendation\Domain\DTO\Bar;
 
+use Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Model\SiteChoice;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -44,6 +45,13 @@ interface BarInterface
      * @return ObjectStorage
      */
     public function getSortedChoicesWithLimit(): ObjectStorage;
+
+    /**
+     * Return choice with highest priority
+     *
+     * @return Choice
+     */
+    public function getHighestPriorityChoice(): Choice;
 
     /**
      * Set detectors country ISO codes and locales priority

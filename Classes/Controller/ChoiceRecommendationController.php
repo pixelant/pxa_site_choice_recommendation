@@ -76,7 +76,8 @@ class ChoiceRecommendationController extends ActionController
             $this->rootPage->getRootPageUid()
         );
 
-        if ($siteChoice !== null) {
+        // If there is what to show
+        if ($siteChoice !== null && $siteChoice->getChoices()->count() > 0) {
             $choiceBarFactory = GeneralUtility::makeInstance(ChoiceBarFactory::class);
             $choiceBar = $choiceBarFactory->build($siteChoice, $this->getAvailableDetectorFactoryCreators());
 

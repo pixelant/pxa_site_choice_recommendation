@@ -6,6 +6,9 @@ PxaSiteChoiceRecommendation = function () {
      * @constructor
      */
     function PxaSiteChoiceRecommendation() {
+        // Active choice url
+        this.currentSelectedUrl = null;
+
         // Ajax loading bar url
         this.ajaxUrl = '?type=8790341';
         // Default settings
@@ -14,10 +17,15 @@ PxaSiteChoiceRecommendation = function () {
             insertMethod: 'insertBefore',
 
             /** Bar elements Dom selectors **/
-            selectBox: 'select',
+            selectBox: '[data-site-choice-select="1"]',
+            selectBoxActiveClass: '_open',
+            selectBoxSelectedItem: '[data-selected-item="1"]',
             acceptButton: '[data-accept-choice="1"]',
             closeButton: '[data-close="1"]',
-        }
+        };
+
+        // Settings loaded with ajax
+        this.customSettings = {};
     }
 
     let proto = PxaSiteChoiceRecommendation.prototype;
@@ -80,10 +88,10 @@ PxaSiteChoiceRecommendation = function () {
         let self = this;
 
         if (response.visible) {
-            let settings = response.settings || this.getDefaultSettings();
+            this.customSettings = response.settings || {};
 
-            let querySelector = this.getSettingValueOrDefault(settings, 'querySelector'),
-                insertMethod = this.getSettingValueOrDefault(settings, 'insertMethod'),
+            let querySelector = this.getSettingValueOrDefault('querySelector'),
+                insertMethod = this.getSettingValueOrDefault('insertMethod'),
                 bar = this.__htmlToElement(response.html);
 
             let parentDom = document.querySelector(querySelector);
@@ -95,16 +103,23 @@ PxaSiteChoiceRecommendation = function () {
             }
 
             // Attach events to bar
-            let selectBox = bar.querySelector(this.getSettingValueOrDefault(settings, 'selectBox')),
-                acceptButton = bar.querySelector(this.getSettingValueOrDefault(settings, 'acceptButton')),
-                closeButton = bar.querySelector(this.getSettingValueOrDefault(settings, 'closeButton'));
+            let selectBox = bar.querySelector(this.getSettingValueOrDefault('selectBox')),
+                acceptButton = bar.querySelector(this.getSettingValueOrDefault('acceptButton')),
+                closeButton = bar.querySelector(this.getSettingValueOrDefault('closeButton')),
+                selectedItem = selectBox.querySelector(this.getSettingValueOrDefault('selectBoxSelectedItem'));
+
+            // Set url from current selected item
+            this.currentSelectedUrl = selectedItem.dataset.href;
 
             acceptButton.onclick = function () {
-                self._acceptClick(selectBox);
+                self._acceptClick();
             };
             closeButton.onclick = function () {
                 self._closeClick(bar);
             };
+            selectBox.onclick = function (e) {
+                self._selectBoxClick(selectBox, selectedItem, e);
+            }
         }
     };
 
@@ -145,13 +160,13 @@ PxaSiteChoiceRecommendation = function () {
 
     /**
      * Get value from settigns or return default value
-     * @param settings
+     *
      * @param setting
      * @return {*|string|Object}
      * @private
      */
-    proto.getSettingValueOrDefault = function (settings, setting) {
-        return settings[setting] || this.getDefaultSettings(setting);
+    proto.getSettingValueOrDefault = function (setting) {
+        return this.customSettings[setting] || this.getDefaultSettings(setting);
     };
 
     /**
@@ -179,14 +194,13 @@ PxaSiteChoiceRecommendation = function () {
     /**
      * Action when user accept some language proposal
      *
-     * @param selectBox
      * @private
      */
-    proto._acceptClick = function (selectBox) {
-        let url = selectBox.options[selectBox.selectedIndex].value;
-
-        if (url.length) {
-            window.location = url;
+    proto._acceptClick = function () {
+        if (this.currentSelectedUrl) {
+            window.location = this.currentSelectedUrl;
+        } else {
+            console.error('Choice url is not valid');
         }
     };
 
@@ -199,6 +213,25 @@ PxaSiteChoiceRecommendation = function () {
     proto._closeClick = function (bar) {
         bar.style.cssText = 'display:none;visibility:hidden;';
         this.markBarAsHidden();
+    };
+
+    /**
+     * Handle click on select box
+     *
+     * @param selectBox
+     * @param selectedItem
+     * @param event
+     * @private
+     */
+    proto._selectBoxClick = function (selectBox, selectedItem, event) {
+        event.preventDefault();
+
+        selectBox.classList.toggle(this.getSettingValueOrDefault('selectBoxActiveClass'));
+
+        if (event.target.tagName === 'A') {
+            selectedItem.innerText = event.target.dataset.text || event.target.innerText.trim();
+            this.currentSelectedUrl = event.target.href;
+        }
     };
 
     /**
