@@ -20,11 +20,18 @@ class AcceptLanguageDetector implements DetectorInterface
     protected $parsedLanguages = null;
 
     /**
+     * Default language priority
+     *
+     * @var float
+     */
+    protected $defaultPriority = 1.0;
+
+    /**
      * Initialize
      *
      * @param $acceptLanguage
      */
-    public function __construct($acceptLanguage)
+    public function __construct(string $acceptLanguage)
     {
         $this->acceptLanguage = $acceptLanguage;
     }
@@ -56,7 +63,7 @@ class AcceptLanguageDetector implements DetectorInterface
         foreach ($languages as $language) {
             $lang = explode(';q=', $language);
             // $lang == [language, weight], default weight = 1
-            $result[$lang[0]] = isset($lang[1]) ? floatval($lang[1]) : 1;
+            $result[$lang[0]] = isset($lang[1]) ? floatval($lang[1]) : $this->defaultPriority;
         }
 
         arsort($result);
