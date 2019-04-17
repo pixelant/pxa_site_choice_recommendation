@@ -5,13 +5,13 @@
 <f:section name="main">
     <f:if condition="{siteChoice}">
         <f:then>
-            <f:for as="choice" each="{siteChoice.choices}">
-                <ul>
-                    <li>
-                        <a href="{choice.url}">{choice.localeTitle}</a>
-                    </li>
-                </ul>
-            </f:for>
+					<ul class="choice-recommendation__list">
+						<f:for as="choice" each="{siteChoice.choices}">
+							<li class="choice-recommendation__list-item">
+									<a class="choice-recommendation__item-link" href="{choice.url}">{choice.localeTitle}</a>
+							</li>
+						</f:for>
+					</ul>
         </f:then>
         <f:else>
             <p class="bg-warning">
