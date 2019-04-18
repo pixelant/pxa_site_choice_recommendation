@@ -98,11 +98,27 @@
 .site-choice__item-link {
     color: #fff;
     height: 45px;
-    display: flex;
-    align-items: center;
     text-decoration: none;
     padding: 10px;
     font-size: 16px;
+    display: block;
+}
+
+.site-choice__selected-item span,
+.site-choice__item-link span {
+    display: flex;
+    align-items: center;
+}
+
+.site-choice__selected-item img,
+.site-choice__item-link img {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    margin-right: 10px;
 }
 
 .site-choice__item-link:hover {
