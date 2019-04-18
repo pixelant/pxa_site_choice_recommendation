@@ -20,6 +20,7 @@ PxaSiteChoiceRecommendation = function () {
             selectBox: '[data-site-choice-select="1"]',
             selectBoxActiveClass: '_open',
             selectBoxSelectedItem: '[data-selected-item="1"]',
+            selectBoxChoiceItem: '[data-choice-item="1"]',
             acceptButton: '[data-accept-choice="1"]',
             closeButton: '[data-close="1"]',
         };
@@ -106,7 +107,8 @@ PxaSiteChoiceRecommendation = function () {
             let selectBox = bar.querySelector(this.getSettingValueOrDefault('selectBox')),
                 acceptButton = bar.querySelector(this.getSettingValueOrDefault('acceptButton')),
                 closeButton = bar.querySelector(this.getSettingValueOrDefault('closeButton')),
-                selectedItem = selectBox.querySelector(this.getSettingValueOrDefault('selectBoxSelectedItem'));
+                selectedItem = selectBox.querySelector(this.getSettingValueOrDefault('selectBoxSelectedItem')),
+                choiceItems = selectBox.querySelectorAll(this.getSettingValueOrDefault('selectBoxChoiceItem'));
 
             // Set url from current selected item
             this.currentSelectedUrl = selectedItem.dataset.href;
@@ -118,8 +120,10 @@ PxaSiteChoiceRecommendation = function () {
                 self._closeClick(bar);
             };
             selectBox.onclick = function (e) {
-                self._selectBoxClick(selectBox, selectedItem, e);
-            }
+                self._selectBoxClick(selectBox, e);
+            };
+
+            this._choiceItemsClick(choiceItems, selectedItem);
         }
     };
 
@@ -219,18 +223,33 @@ PxaSiteChoiceRecommendation = function () {
      * Handle click on select box
      *
      * @param selectBox
-     * @param selectedItem
      * @param event
      * @private
      */
-    proto._selectBoxClick = function (selectBox, selectedItem, event) {
+    proto._selectBoxClick = function (selectBox, event) {
         event.preventDefault();
 
         selectBox.classList.toggle(this.getSettingValueOrDefault('selectBoxActiveClass'));
+    };
 
-        if (event.target.tagName === 'A') {
-            selectedItem.innerText = event.target.dataset.text || event.target.innerText.trim();
-            this.currentSelectedUrl = event.target.href;
+    /**
+     * Track clicks on select items
+     *
+     * @param items
+     * @param selectedItem
+     * @private
+     */
+    proto._choiceItemsClick = function (items, selectedItem) {
+        const self = this;
+
+        for (let i = 0; i < items.length; i++) {
+            let choice = items[i];
+
+            choice.onclick = function (e) {
+                e.preventDefault();
+                selectedItem.innerHTML = choice.innerHTML;
+                self.currentSelectedUrl = choice.href;
+            }
         }
     };
 

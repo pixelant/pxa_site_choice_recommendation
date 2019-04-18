@@ -32,6 +32,11 @@ class Choice extends AbstractEntity
     protected $title = '';
 
     /**
+     * @var string
+     */
+    protected $flag = '';
+
+    /**
      * Parsed locale title from title text
      *
      * @var string
@@ -228,6 +233,22 @@ class Choice extends AbstractEntity
     public function setPriority(float $priority): void
     {
         $this->priority = $priority;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFlag(): string
+    {
+        return $this->flag;
+    }
+
+    /**
+     * @param string $flag
+     */
+    public function setFlag(string $flag): void
+    {
+        $this->flag = $flag;
     }
 
     /**

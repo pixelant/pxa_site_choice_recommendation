@@ -7,10 +7,10 @@
 			    <source>Choices</source>
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.localePalette">
-			    <source>Enter country ISO 3166-1 code and language locale</source>
+			    <source>Select corresponding country and language for which choice match</source>
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.linkToPalette">
-				<source>Link to external URL or connect to language layer</source>
+				<source>Choice lead user to external url or language layer</source>
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice">
 				<source>Site Choice Configuration</source>
@@ -38,6 +38,9 @@
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.title">
 				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.flag">
+			    <source>Flag</source>
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.country_isocode">
 				<source>Select country</source>

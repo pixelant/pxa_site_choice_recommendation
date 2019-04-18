@@ -23,6 +23,14 @@ plugin.tx_pxasitechoicerecommendation {
             insertMethod = insertBefore
         }
 
+        flagsIcons {
+            allowedExtensions = svg,png
+            paths {
+                10 = EXT:core/Resources/Public/Icons/Flags
+                20 = EXT:pxa_site_choice_recommendation/Resources/Public/Icons
+            }
+        }
+
         showBarOnSplashPage = 0
     }
 }

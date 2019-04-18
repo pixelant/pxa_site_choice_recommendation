@@ -20,16 +20,19 @@ return [
         'iconfile' => 'EXT:pxa_site_choice_recommendation/Resources/Public/Icons/Extension.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, locale, language_uid, link, language_layer_uid',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, flag, country_isocode, language_isocode, link, language_layer_uid',
     ],
     'types' => [
         '1' => ['showitem' =>
-            'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title,
+            '--palette--;;sysLanguagePalette, title, flag,
              --palette--;LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.localePalette;localePalette,
              --palette--;LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.linkToPalette;linkToPalette,'
         ],
     ],
     'palettes' => [
+        'sysLanguagePalette' => [
+            'showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource,'
+        ],
         'localePalette' => [
             'showitem' => 'country_isocode, language_isocode'
         ],
@@ -73,14 +76,6 @@ return [
         'l10n_diffsource' => [
             'config' => [
                 'type' => 'passthrough',
-            ],
-        ],
-        't3ver_label' => [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.versionLabel',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'max' => 255,
             ],
         ],
         'hidden' => [
@@ -137,6 +132,15 @@ return [
                 'rows' => 5,
                 'eval' => 'trim',
             ]
+        ],
+        'flag' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.flag',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [],
+            ],
         ],
         'country_isocode' => [
             'exclude' => true,

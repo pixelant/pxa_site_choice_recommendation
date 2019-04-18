@@ -18,6 +18,9 @@
 			<trans-unit id="link.description">
 				<source>External link</source>
 			</trans-unit>
+			<trans-unit id="flag.description">
+			    <source>Country flag</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
