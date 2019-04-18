@@ -1,0 +1,31 @@
+.choice-recommendation__list {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    grid-gap: 25px 15px;
+    margin: 25px 0;
+}
+
+.choice-recommendation__item-link {
+    display: block;
+    color: #2a2a2a;
+}
+
+.choice-recommendation__item-link + .choice-recommendation__item-link {
+    margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+    .choice-recommendation__list {
+        grid-template-columns: repeat(4, 1fr);
+        margin: 30px 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .choice-recommendation__list {
+        margin: 45px 0;
+    }
+}

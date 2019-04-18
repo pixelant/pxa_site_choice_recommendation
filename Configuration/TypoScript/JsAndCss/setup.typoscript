@@ -1,6 +1,7 @@
 page {
     includeCSS {
         pxa_site_choice_recommendation_bar = EXT:pxa_site_choice_recommendation/Resources/Public/Css/bar.css
+        pxa_site_choice_recommendation_page = EXT:pxa_site_choice_recommendation/Resources/Public/Css/splashPage.css
     }
 
     includeJSFooterlibs {
