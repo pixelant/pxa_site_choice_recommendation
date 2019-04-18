@@ -15,7 +15,6 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'hideTable' => true,
         'searchFields' => 'title,locale,link',
         'iconfile' => 'EXT:pxa_site_choice_recommendation/Resources/Public/Icons/Extension.svg'
     ],

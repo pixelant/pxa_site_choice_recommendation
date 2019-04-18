@@ -17,6 +17,15 @@
     margin-top: 10px;
 }
 
+.choice-recommendation__item-link img {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    margin-right: 10px;
+}
+
 @media (min-width: 768px) {
     .choice-recommendation__list {
         grid-template-columns: repeat(4, 1fr);

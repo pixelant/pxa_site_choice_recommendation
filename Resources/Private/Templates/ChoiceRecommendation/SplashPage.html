@@ -1,71 +1,27 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:pxa="http://typo3.org/ns/Pixelant/PxaSiteChoiceRecommendation/ViewHelpers"
+      data-namespace-typo3-fluid="true">
 
 <f:layout name="Default" />
 
 <f:section name="main">
-		<f:comment>
-    <f:if condition="{siteChoice}">
-        <f:then>
-					<ul class="choice-recommendation__list">
-						<f:for as="choice" each="{siteChoice.choices}">
-							<li class="choice-recommendation__list-item">
-									<a class="choice-recommendation__item-link" href="{choice.url}">{choice.localeTitle}</a>
-							</li>
-						</f:for>
-					</ul>
-        </f:then>
-        <f:else>
-            <p class="bg-warning">
-                <f:translate key="site_choice_not_found" />
-            </p>
-        </f:else>
-		</f:if>
-		</f:comment>
-		<div class="choice-recommendation__page">
-				<ul class="choice-recommendation__list">
-					<li>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-					</li>
-					<li>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-					</li>
-					<li>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-					</li>
-					<li>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-					</li>
-				</ul>
-				<ul class="choice-recommendation__list">
-					<li>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-					</li>
-					<li>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-					</li>
-					<li>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-					</li>
-					<li>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-						<a class="choice-recommendation__item-link" href="#">English</a>
-					</li>
-				</ul>
-		</div>
+    <div class="choice-recommendation__page">
+        <f:for as="choiceChunk" each="{siteChoice.choices -> pxa:chunks(size: '12')}">
+            <ul class="choice-recommendation__list">
+                <f:for as="subChoiseChunk" each="{choiceChunk -> pxa:chunks(size: '3')}">
+                    <li>
+                        <f:for as="choice" each="{subChoiseChunk}">
+                            <a class="choice-recommendation__item-link" href="{choice.url}">
+                                <span>
+                                    <f:render partial="FlagIcon" arguments="{flag: choice.flag}" />
+                                    <span> {choice.localeTitle}</span>
+                                </span>
+                            </a>
+                        </f:for>
+                    </li>
+                </f:for>
+            </ul>
+        </f:for>
+    </div>
 </f:section>
 </html>

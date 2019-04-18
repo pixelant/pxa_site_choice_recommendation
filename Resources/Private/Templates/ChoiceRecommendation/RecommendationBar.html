@@ -1,4 +1,4 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:pxa="http://typo3.org/ns/Pixelant/PxaSiteChoiceRecommendation/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
 <f:layout name="Empty" />
 
@@ -16,7 +16,7 @@
                                       data-selected-item="1"
                                       data-href="{choiceBar.highestPriorityChoice.url}">
 									<span>
-										<f:render section="flag" arguments="{flag: choiceBar.highestPriorityChoice.flag}" />
+										<f:render partial="FlagIcon" arguments="{flag: choiceBar.highestPriorityChoice.flag}" />
 										<span> {choiceBar.highestPriorityChoice.localeTitle}</span>
 									</span>
 								</span>
@@ -27,7 +27,7 @@
                                             <li class="site-choice__list-item">
                                                 <a href="{choice.url}" class="site-choice__item-link" data-choice-item="1">
                                                     <span>
-														<f:render section="flag" arguments="{flag: choice.flag}" />
+														<f:render partial="FlagIcon" arguments="{flag: choice.flag}" />
 	                                                    <span> {choice.localeTitle}</span>
 													</span>
                                                 </a>
@@ -39,7 +39,7 @@
 																 additionalAttributes="{data-choice-item: '1'}"
 																 class="site-choice__item-link">
 													<span>
-														<f:render section="flag" arguments="{flag: 'globe'}" />
+														<f:render partial="FlagIcon" arguments="{flag: 'globe'}" />
 														<span> <f:translate key="splash_page_link" /></span>
 													</span>
                                                 </f:link.typolink>
@@ -49,23 +49,15 @@
 								</f:if>
 							</div>
 							<button class="site-choice__button-accept" data-accept-choice="1">
-									<f:translate key="accept_choice" />
+								<f:translate key="accept_choice" />
 							</button>
 							<button class="site-choice__button-close" data-close="1">
-									<f:translate key="bar_close" />
+								<f:translate key="bar_close" />
 							</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-</f:section>
-
-<f:section name="flag">
-	<pxa:choiceFlag flag="{flag}"
-					paths="{settings.flagsIcons.paths}"
-					allowedExtensions="{settings.flagsIcons.allowedExtensions}"
-					width="16"
-					height="16" />
 </f:section>
 </html>
