@@ -13,6 +13,11 @@
     color: #2a2a2a;
 }
 
+.choice-recommendation__item-link span {
+    display: flex;
+    align-items: center;
+}
+
 .choice-recommendation__item-link + .choice-recommendation__item-link {
     margin-top: 10px;
 }
@@ -23,7 +28,7 @@
     border-radius: 50%;
     object-fit: cover;
     object-position: 50% 50%;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 @media (min-width: 768px) {
@@ -36,5 +41,9 @@
 @media (min-width: 992px) {
     .choice-recommendation__list {
         margin: 45px 0;
+    }
+
+    .choice-recommendation__item-link + .choice-recommendation__item-link {
+        margin-top: 15px;
     }
 }
