@@ -39,7 +39,7 @@
 
 .site-choice__select {
     position: relative;
-    width: 215px;
+    flex: 1;
     height: 30px;
     border: 1px solid #888;
     cursor: pointer;
@@ -176,9 +176,22 @@
     transform: translateX(-50%) translateY(-50%) rotate(-45deg);
 }
 
+@media (max-width: 320px) {
+    .site-choice__select {
+        flex: none;
+        width: 100%;
+    }
+
+    .site-choice__button-accept {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
 @media (min-width: 768px) {
     .site-choice__select {
-        width: 230px;
+        width: 260px;
+        flex: none;
     }
 
     .site-choice__button-accept {
