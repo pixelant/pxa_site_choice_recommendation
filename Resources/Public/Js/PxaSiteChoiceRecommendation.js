@@ -124,6 +124,12 @@ PxaSiteChoiceRecommendation = function () {
             };
 
             this._choiceItemsClick(choiceItems, selectedItem);
+
+            window.onclick = function (e) {
+                if (false === selectBox.contains(e.target)) {
+                    selectBox.classList.remove(self.getSettingValueOrDefault('selectBoxActiveClass'));
+                }
+            };
         }
     };
 
