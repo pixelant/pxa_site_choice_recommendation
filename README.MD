@@ -36,8 +36,9 @@ Default title
 Swedish title|sv_SE
 Ukrainian title|uk_UA
 ```
-- *Country ISO 3166-1 code* - specify country ISO code (for ex. "us" for USA). This code will be used when check if choice match by user IP. [ISO codes](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) 
-- *Language locale code* - language full ISO code (for ex. "en_US" for USA English). This code will be used for check by user language.
+- *Flag* - flag icon to show in select box and splash page
+- *Select country* - select country. This field represents ISO code (for ex. "us" for USA). This code will be used when check if choice match by user IP. [ISO codes](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) 
+- *Select language* - select language from list. This field represents short ISO code (for ex. "en" for English). This code will be used for check by user language.
 - *Link* - **if choice target to external url**
 - *Language layer* - **if choice should lead to site langauge layer**. *Link* need to be empty if language layer is used.
 
