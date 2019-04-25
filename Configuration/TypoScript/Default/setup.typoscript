@@ -27,6 +27,7 @@ plugin.tx_pxasitechoicerecommendation {
             allowedExtensions = svg,png
             paths {
                 10 = EXT:core/Resources/Public/Icons/Flags
+                15 = EXT:core/Resources/Public/Icons/Flags/PNG
                 20 = EXT:pxa_site_choice_recommendation/Resources/Public/Icons
             }
         }
