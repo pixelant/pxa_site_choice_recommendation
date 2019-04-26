@@ -258,6 +258,27 @@ class Choice extends AbstractEntity
      */
     public function getUrl(): string
     {
+        return $this->generateChoiceUrl();
+    }
+
+    /**
+     * Generate url for splash page
+     *
+     * @return string
+     */
+    public function getUrlForSplashPage(): string
+    {
+        return $this->generateChoiceUrl(true);
+    }
+
+    /**
+     * Generate url of site choice
+     *
+     * @param bool $forceToRootPage Force choice to lead to root page in case of splash page
+     * @return string
+     */
+    protected function generateChoiceUrl(bool $forceToRootPage = false): string
+    {
         // Should be called only FE
         if (TYPO3_MODE !== 'FE') {
             return '';
@@ -271,16 +292,28 @@ class Choice extends AbstractEntity
             $parameter = $this->getLink();
             $linkMode = true;
         } else {
-            // Or use current page + language UID
-            $parameter = $GLOBALS['TSFE']->id;
+            // Use current page or root
+            if ($forceToRootPage
+                || false === MainUtility::isPageTranslationAvailable($GLOBALS['TSFE']->id, $this->getLanguageLayerUid())
+            ) {
+                $parameter = 0;
+                foreach ($GLOBALS['TSFE']->rootLine as $page) {
+                    if ((int)$page['is_siteroot'] === 1) {
+                        $parameter = (int)$page['uid'];
+                        break;
+                    }
+                }
+            } else {
+                $parameter = $GLOBALS['TSFE']->id;
+            }
         }
 
         if ($parameter) {
-            $contentObject = GeneralUtility::makeInstance(ContentObjectRenderer::class);
             $params = [
-                'parameter' => $parameter,
+                'parameter' => $parameter
             ];
 
+            $contentObject = GeneralUtility::makeInstance(ContentObjectRenderer::class);
             // If not external URL add language parameter
             if (false === $linkMode) {
                 $params += version_compare(TYPO3_version, '9.0', '<')
