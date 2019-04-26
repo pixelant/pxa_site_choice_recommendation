@@ -55,14 +55,14 @@ return (function () {
         ],
         'types' => [
             '1' => ['showitem' =>
-                '--palette--;;sysLanguagePalette, title, flag,
+                '--palette--;;topRowPalette, title, flag,
              --palette--;LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.localePalette;localePalette,
              --palette--;LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.linkToPalette;linkToPalette,'
             ],
         ],
         'palettes' => [
-            'sysLanguagePalette' => [
-                'showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource,'
+            'topRowPalette' => [
+                'showitem' => 'sitechoice, sys_language_uid, l10n_parent, l10n_diffsource,'
             ],
             'localePalette' => [
                 'showitem' => 'country_isocode, language_isocode'
@@ -216,9 +216,16 @@ return (function () {
             ],
 
             'sitechoice' => [
+                'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.sitechoice',
                 'config' => [
-                    'type' => 'passthrough',
-                ],
+                    'type' => 'select',
+                    'renderType' => 'selectSingle',
+                    'foreign_table' => 'tx_pxasitechoicerecommendation_domain_model_sitechoice',
+                    'foreign_table_where' => 'AND tx_pxasitechoicerecommendation_domain_model_sitechoice.deleted=0',
+                    'items' => [
+                        ['LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.none', 0],
+                    ]
+                ]
             ],
         ],
     ];
