@@ -26,6 +26,10 @@ class MainUtility
      */
     public static function isPageTranslationAvailable(int $pageUid, int $languageUid): bool
     {
+        if ($languageUid === 0) {
+            return true;
+        }
+
         /** @var FrontendInterface $runtimeCache */
         $runtimeCache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_runtime');
         $cacheHash = 'pxa_site_choice_recommendation_isPageTranslationAvailable-' . $pageUid . $languageUid;
