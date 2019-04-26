@@ -63,6 +63,9 @@
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.language_layer_uid">
 			    <source>Language layer</source>
 			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.sitechoice">
+			    <source>Site choice</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

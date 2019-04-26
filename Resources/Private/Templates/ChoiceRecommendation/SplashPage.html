@@ -11,7 +11,7 @@
                 <f:for as="subChoiseChunk" each="{choiceChunk -> pxa:chunks(size: '3')}">
                     <li>
                         <f:for as="choice" each="{subChoiseChunk}">
-                            <a class="choice-recommendation__item-link" href="{choice.url}">
+                            <a class="choice-recommendation__item-link" href="{choice.urlForSplashPage}">
                                 <span>
                                     <f:render partial="FlagIcon" arguments="{flag: choice.flag}" />
                                     <span> {choice.localeTitle}</span>
