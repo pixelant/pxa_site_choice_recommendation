@@ -64,6 +64,14 @@ class SiteChoice extends AbstractEntity
     protected $choices = null;
 
     /**
+     * Available splash pages
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaSiteChoiceRecommendation\Domain\Model\SplashPage>
+     * @cascade remove
+     */
+    protected $splashPages = null;
+
+    /**
      * __construct
      */
     public function __construct()
@@ -84,6 +92,7 @@ class SiteChoice extends AbstractEntity
     protected function initStorageObjects()
     {
         $this->choices = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->splashPages = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     /**
@@ -191,6 +200,44 @@ class SiteChoice extends AbstractEntity
     public function setChoices(ObjectStorage $choices)
     {
         $this->choices = $choices;
+    }
+
+    /**
+     * Adds a SplashPage
+     *
+     * @param SplashPage $splashPage
+     * @return void
+     */
+    public function addSplashPage(SplashPage $splashPage): void
+    {
+        $this->splashPages->attach($splashPage);
+    }
+
+    /**
+     * Removes a SplashPage
+     *
+     * @param SplashPage $splashPage
+     * @return void
+     */
+    public function removeSplashPage(SplashPage $splashPage): void
+    {
+        $this->splashPages->detach($splashPage);
+    }
+
+    /**
+     * @return ObjectStorage
+     */
+    public function getSplashPages(): ObjectStorage
+    {
+        return $this->splashPages;
+    }
+
+    /**
+     * @param ObjectStorage $splashPages
+     */
+    public function setSplashPages(ObjectStorage $splashPages): void
+    {
+        $this->splashPages = $splashPages;
     }
 
     /**
