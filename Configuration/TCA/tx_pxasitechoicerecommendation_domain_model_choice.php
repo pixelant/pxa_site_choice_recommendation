@@ -194,7 +194,7 @@ return (function () {
                     'fieldControl' => [
                         'linkPopup' => [
                             'options' => [
-                                'blindLinkOptions' => 'page,file,folder,mail',
+                                'blindLinkOptions' => 'file,folder,mail',
                                 'blindLinkFields' => 'class,target,title'
                             ]
                         ]
