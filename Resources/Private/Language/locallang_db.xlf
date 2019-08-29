@@ -64,13 +64,13 @@
 			    <source>Site choice</source>
 			</trans-unit>
 
-			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_splash_page">
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_splashpage">
 			    <source>Splash page</source>
 			</trans-unit>
-			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_splash_page.root_page">
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_splashpage.root_page">
 				<source>Root page of splash page</source>
 			</trans-unit>
-			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_splash_page.link_target">
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_splashpage.link_target">
 				<source>Link target</source>
 			</trans-unit>
 		</body>

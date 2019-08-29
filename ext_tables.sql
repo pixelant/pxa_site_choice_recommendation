@@ -63,9 +63,9 @@ CREATE TABLE tx_pxasitechoicerecommendation_domain_model_choice (
 );
 
 #
-# Table structure for table 'tx_pxasitechoicerecommendation_domain_model_splash_page'
+# Table structure for table 'tx_pxasitechoicerecommendation_domain_model_splashpage'
 #
-CREATE TABLE tx_pxasitechoicerecommendation_domain_model_splash_page (
+CREATE TABLE tx_pxasitechoicerecommendation_domain_model_splashpage (
     uid int(11) NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
 
@@ -90,9 +90,9 @@ CREATE TABLE tx_pxasitechoicerecommendation_domain_model_splash_page (
 );
 
 #
-# Table structure for table 'tx_pxasitechoicerecommendation_domain_model_splash_page'
+# Table structure for table 'tx_pxasitechoicerecommendation_domain_model_splashpage'
 #
-CREATE TABLE tx_pxasitechoicerecommendation_domain_model_splash_page (
+CREATE TABLE tx_pxasitechoicerecommendation_domain_model_splashpage (
     sitechoice int(11) unsigned DEFAULT '0' NOT NULL
 );
 

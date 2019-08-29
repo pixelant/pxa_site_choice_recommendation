@@ -76,6 +76,8 @@ class ChoiceRecommendationController extends ActionController
             $this->rootPage->getRootPageUid()
         );
 
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($siteChoice,'Debug',16);
+        die;
         // If there is what to show
         if ($siteChoice !== null && $siteChoice->getChoices()->count() > 0) {
             $choiceBarFactory = GeneralUtility::makeInstance(ChoiceBarFactory::class);

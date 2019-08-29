@@ -150,7 +150,7 @@ return (function () {
                 'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_sitechoice.splash_pages',
                 'config' => [
                     'type' => 'inline',
-                    'foreign_table' => 'tx_pxasitechoicerecommendation_domain_model_splash_page',
+                    'foreign_table' => 'tx_pxasitechoicerecommendation_domain_model_splashpage',
                     'foreign_field' => 'sitechoice',
                     'foreign_sortby' => 'sorting',
                     'maxitems' => 9999,

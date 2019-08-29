@@ -35,7 +35,7 @@ return (function () {
 
     return [
         'ctrl' => [
-            'title' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_splash_page',
+            'title' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_splashpage',
             'label' => 'root_page',
             'tstamp' => 'tstamp',
             'crdate' => 'crdate',
@@ -103,7 +103,7 @@ return (function () {
 
             'root_page' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_splash_page.root_page',
+                'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_splashpage.root_page',
                 'config' => [
                     'type' => 'select',
                     'renderType' => 'selectSingle',
@@ -115,7 +115,7 @@ return (function () {
 
             'link_target' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_splash_page.link_target',
+                'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_splashpage.link_target',
                 'config' => [
                     'type' => 'input',
                     'size' => 30,
