@@ -37,20 +37,6 @@ class SiteChoice extends AbstractEntity
     protected $maxItems = 0;
 
     /**
-     * showSplashPage
-     *
-     * @var bool
-     */
-    protected $showSplashPage = false;
-
-    /**
-     * splashPageLink
-     *
-     * @var string
-     */
-    protected $splashPageLink = '';
-
-    /**
      * @var string
      */
     protected $rootPages = '';
@@ -125,38 +111,6 @@ class SiteChoice extends AbstractEntity
     public function setMaxItems(int $maxItems): void
     {
         $this->maxItems = $maxItems;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isShowSplashPage(): bool
-    {
-        return $this->showSplashPage;
-    }
-
-    /**
-     * @param bool $showSplashPage
-     */
-    public function setShowSplashPage(bool $showSplashPage): void
-    {
-        $this->showSplashPage = $showSplashPage;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSplashPageLink(): string
-    {
-        return $this->splashPageLink;
-    }
-
-    /**
-     * @param string $splashPageLink
-     */
-    public function setSplashPageLink(string $splashPageLink): void
-    {
-        $this->splashPageLink = $splashPageLink;
     }
 
     /**
