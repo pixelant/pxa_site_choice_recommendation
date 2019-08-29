@@ -2,6 +2,7 @@
 
 namespace Pixelant\PxaSiteChoiceRecommendation\Domain\Model;
 
+use Pixelant\PxaSiteChoiceRecommendation\Domain\Site\RootPage;
 use Pixelant\PxaSiteChoiceRecommendation\Utility\MainUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
@@ -286,23 +287,17 @@ class Choice extends AbstractEntity
 
         $url = '';
 
-        $linkMode = false;
+        $externalUrl = false;
         // External url
         if ($this->getLink()) {
             $parameter = $this->getLink();
-            $linkMode = true;
+            $externalUrl = true;
         } else {
             // Use current page or root
             if ($forceToRootPage
-                || false === MainUtility::isPageTranslationAvailable($GLOBALS['TSFE']->id, $this->getLanguageLayerUid())
+                || !MainUtility::isPageTranslationAvailable($GLOBALS['TSFE']->id, $this->getLanguageLayerUid())
             ) {
-                $parameter = 0;
-                foreach ($GLOBALS['TSFE']->rootLine as $page) {
-                    if ((int)$page['is_siteroot'] === 1) {
-                        $parameter = (int)$page['uid'];
-                        break;
-                    }
-                }
+                $parameter = $this->getRootPage()->getRootPageUid();
             } else {
                 $parameter = $GLOBALS['TSFE']->id;
             }
@@ -315,7 +310,7 @@ class Choice extends AbstractEntity
 
             $contentObject = GeneralUtility::makeInstance(ContentObjectRenderer::class);
             // If not external URL add language parameter
-            if (false === $linkMode) {
+            if (!$externalUrl) {
                 $params += version_compare(TYPO3_version, '9.0', '<')
                     ? ['additionalParams' => '&L=' . $this->getLanguageLayerUid()]
                     : ['language' => $this->getLanguageLayerUid()];
@@ -325,5 +320,13 @@ class Choice extends AbstractEntity
         }
 
         return $url;
+    }
+
+    /**
+     * @return RootPage
+     */
+    protected function getRootPage(): RootPage
+    {
+        return GeneralUtility::makeInstance(RootPage::class);
     }
 }
