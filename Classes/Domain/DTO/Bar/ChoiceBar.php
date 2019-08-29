@@ -181,7 +181,7 @@ class ChoiceBar implements BarInterface
     /**
      * Get splash page for current root page
      *
-     * @return SplashPage
+     * @return SplashPage|null
      */
     public function getSplashPage(): ?SplashPage
     {
