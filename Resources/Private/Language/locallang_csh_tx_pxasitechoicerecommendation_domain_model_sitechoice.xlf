@@ -12,9 +12,6 @@
 			<trans-unit id="max_items.description">
 				<source>Max items in selection list</source>
 			</trans-unit>
-			<trans-unit id="show_splash_page.description">
-				<source>Show link on splash page if amount of items reached limit</source>
-			</trans-unit>
 			<trans-unit id="splash_page_link.description">
 				<source>Splash page link</source>
 			</trans-unit>

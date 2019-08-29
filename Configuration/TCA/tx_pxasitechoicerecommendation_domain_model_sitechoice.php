@@ -53,10 +53,10 @@ return (function () {
             'iconfile' => 'EXT:pxa_site_choice_recommendation/Resources/Public/Icons/Extension.svg'
         ],
         'interface' => [
-            'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, max_items, show_splash_page, splash_page_link, choices',
+            'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, max_items, choices, splash_pages',
         ],
         'types' => [
-            '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, root_pages, max_items, show_splash_page, splash_page_link, --div--;LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tab.choices, choices, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+            '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, root_pages, max_items, splash_pages, --div--;LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tab.choices, choices, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
         ],
         'columns' => [
             'sys_language_uid' => [
@@ -145,34 +145,25 @@ return (function () {
                     'eval' => 'int'
                 ]
             ],
-            'show_splash_page' => [
+            'splash_pages' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_sitechoice.show_splash_page',
+                'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_sitechoice.splash_pages',
                 'config' => [
-                    'type' => 'check',
-                    'items' => [
-                        '1' => [
-                            '0' => 'LLL:EXT:lang/locallang_core.xlf:labels.enabled'
-                        ]
+                    'type' => 'inline',
+                    'foreign_table' => 'tx_pxasitechoicerecommendation_domain_model_splash_page',
+                    'foreign_field' => 'sitechoice',
+                    'foreign_sortby' => 'sorting',
+                    'maxitems' => 9999,
+                    'appearance' => [
+                        'collapseAll' => true,
+                        'levelLinksPosition' => 'top',
+                        'showSynchronizationLink' => true,
+                        'showPossibleLocalizationRecords' => true,
+                        'showAllLocalizationLink' => true
                     ],
-                    'default' => 0,
-                ]
-            ],
-            'splash_page_link' => [
-                'exclude' => true,
-                'label' => 'LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_sitechoice.splash_page_link',
-                'config' => [
-                    'type' => 'input',
-                    'size' => 30,
-                    'eval' => 'trim',
-                    'renderType' => 'inputLink',
-                    'fieldControl' => [
-                        'linkPopup' => [
-                            'options' => [
-                                'blindLinkOptions' => 'file,folder,mail'
-                            ]
-                        ]
-                    ]
+                    'behaviour' => [
+                        'allowLanguageSynchronization' => true,
+                    ],
                 ],
             ],
             'root_pages' => [
@@ -195,11 +186,14 @@ return (function () {
                     'foreign_sortby' => 'sorting',
                     'maxitems' => 9999,
                     'appearance' => [
-                        'collapseAll' => 1,
+                        'collapseAll' => true,
                         'levelLinksPosition' => 'top',
-                        'showSynchronizationLink' => 1,
-                        'showPossibleLocalizationRecords' => 1,
-                        'showAllLocalizationLink' => 1
+                        'showSynchronizationLink' => true,
+                        'showPossibleLocalizationRecords' => true,
+                        'showAllLocalizationLink' => true
+                    ],
+                    'behaviour' => [
+                        'allowLanguageSynchronization' => true,
                     ],
                 ],
 
