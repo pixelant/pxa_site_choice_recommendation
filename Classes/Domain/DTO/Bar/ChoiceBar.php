@@ -5,6 +5,8 @@ namespace Pixelant\PxaSiteChoiceRecommendation\Domain\DTO\Bar;
 
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Model\SiteChoice;
+use Pixelant\PxaSiteChoiceRecommendation\Domain\Model\SplashPage;
+use Pixelant\PxaSiteChoiceRecommendation\Domain\Site\RootPage;
 use Pixelant\PxaSiteChoiceRecommendation\SignalSlot\DispatcherTrait;
 use Pixelant\PxaSiteChoiceRecommendation\Utility\MainUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -22,6 +24,13 @@ class ChoiceBar implements BarInterface
      * @var SiteChoice
      */
     protected $siteChoice = null;
+
+    /**
+     * Splash page of current root line
+     *
+     * @var SplashPage
+     */
+    protected $splashPage = null;
 
     /**
      * Sorted choice list according to priority
@@ -170,6 +179,28 @@ class ChoiceBar implements BarInterface
     }
 
     /**
+     * Get splash page for current root page
+     *
+     * @return SplashPage|null
+     */
+    public function getSplashPage(): ?SplashPage
+    {
+        if ($this->splashPage === null) {
+            $rootPageUid = $this->getRootPage()->getRootPageUid();
+
+            /** @var SplashPage $splashPage */
+            foreach ($this->siteChoice->getSplashPages() as $splashPage) {
+                if ($splashPage->getRootPage() === $rootPageUid) {
+                    $this->splashPage = $splashPage;
+                    break;
+                }
+            }
+        }
+
+        return $this->splashPage;
+    }
+
+    /**
      * Set priority for choice
      *
      * @param Choice $choice
@@ -190,5 +221,13 @@ class ChoiceBar implements BarInterface
         }
 
         return $choice;
+    }
+
+    /**
+     * @return RootPage
+     */
+    protected function getRootPage(): RootPage
+    {
+        return GeneralUtility::makeInstance(RootPage::class);
     }
 }

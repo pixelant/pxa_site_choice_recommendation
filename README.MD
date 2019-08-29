@@ -25,8 +25,7 @@ Main "**General**" tab:
 - *Name* - just whatever you want
 - *Connect to sites* - choose **rootpages where bar should appear**
 - *Max Items* - maximum items in select box in bar
-- *Show Splash Page* - if splash page selection should be visible in options list
-- *Splash Page Link* - link to splash page with all choices list (Site choice recommendation splash page plugin)
+- *Splash pages links* - splash page link for every root page. Each root page might have it's own splash page.
 
 "**Choices**" tab include available site choices for bar and splash page. Each site choice require next configration fields:
 -  *Title* - title of choice. **It's text area** because it could have **different versions(localizations)** of title.

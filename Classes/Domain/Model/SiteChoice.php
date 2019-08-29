@@ -37,20 +37,6 @@ class SiteChoice extends AbstractEntity
     protected $maxItems = 0;
 
     /**
-     * showSplashPage
-     *
-     * @var bool
-     */
-    protected $showSplashPage = false;
-
-    /**
-     * splashPageLink
-     *
-     * @var string
-     */
-    protected $splashPageLink = '';
-
-    /**
      * @var string
      */
     protected $rootPages = '';
@@ -62,6 +48,14 @@ class SiteChoice extends AbstractEntity
      * @cascade remove
      */
     protected $choices = null;
+
+    /**
+     * Available splash pages
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaSiteChoiceRecommendation\Domain\Model\SplashPage>
+     * @cascade remove
+     */
+    protected $splashPages = null;
 
     /**
      * __construct
@@ -84,6 +78,7 @@ class SiteChoice extends AbstractEntity
     protected function initStorageObjects()
     {
         $this->choices = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->splashPages = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     /**
@@ -116,38 +111,6 @@ class SiteChoice extends AbstractEntity
     public function setMaxItems(int $maxItems): void
     {
         $this->maxItems = $maxItems;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isShowSplashPage(): bool
-    {
-        return $this->showSplashPage;
-    }
-
-    /**
-     * @param bool $showSplashPage
-     */
-    public function setShowSplashPage(bool $showSplashPage): void
-    {
-        $this->showSplashPage = $showSplashPage;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSplashPageLink(): string
-    {
-        return $this->splashPageLink;
-    }
-
-    /**
-     * @param string $splashPageLink
-     */
-    public function setSplashPageLink(string $splashPageLink): void
-    {
-        $this->splashPageLink = $splashPageLink;
     }
 
     /**
@@ -194,6 +157,44 @@ class SiteChoice extends AbstractEntity
     }
 
     /**
+     * Adds a SplashPage
+     *
+     * @param SplashPage $splashPage
+     * @return void
+     */
+    public function addSplashPage(SplashPage $splashPage): void
+    {
+        $this->splashPages->attach($splashPage);
+    }
+
+    /**
+     * Removes a SplashPage
+     *
+     * @param SplashPage $splashPage
+     * @return void
+     */
+    public function removeSplashPage(SplashPage $splashPage): void
+    {
+        $this->splashPages->detach($splashPage);
+    }
+
+    /**
+     * @return ObjectStorage
+     */
+    public function getSplashPages(): ObjectStorage
+    {
+        return $this->splashPages;
+    }
+
+    /**
+     * @param ObjectStorage $splashPages
+     */
+    public function setSplashPages(ObjectStorage $splashPages): void
+    {
+        $this->splashPages = $splashPages;
+    }
+
+    /**
      * @return string
      */
     public function getRootPages(): string
@@ -207,15 +208,5 @@ class SiteChoice extends AbstractEntity
     public function setRootPages(string $rootPages): void
     {
         $this->rootPages = $rootPages;
-    }
-
-    /**
-     * Check if splash page link should be visible
-     *
-     * @return bool
-     */
-    public function isSplashPageLinkVisible(): bool
-    {
-        return $this->isShowSplashPage() && !empty($this->getSplashPageLink());
     }
 }

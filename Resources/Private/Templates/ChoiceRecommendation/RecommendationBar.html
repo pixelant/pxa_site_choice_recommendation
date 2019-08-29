@@ -21,7 +21,7 @@
 									</span>
 								</span>
 
-								<f:if condition="{choiceBar.siteChoice.splashPageLinkVisible} || {choiceBar.siteChoice.choices -> f:count()} > 1">
+								<f:if condition="{choiceBar.splashPage} || {choiceBar.siteChoice.choices -> f:count()} > 1">
                                     <ul class="site-choice__items-list">
                                         <f:for as="choice" each="{choiceBar.sortedChoicesWithLimit}">
                                             <li class="site-choice__list-item">
@@ -33,9 +33,9 @@
                                                 </a>
                                             </li>
                                         </f:for>
-                                        <f:if condition="{choiceBar.siteChoice.splashPageLinkVisible}">
+                                        <f:if condition="{choiceBar.splashPage}">
                                             <li class="site-choice__list-item">
-                                                <f:link.typolink parameter="{choiceBar.siteChoice.splashPageLink}"
+                                                <f:link.typolink parameter="{choiceBar.splashPage.linkTarget}"
 																 additionalAttributes="{data-choice-item: '1'}"
 																 class="site-choice__item-link">
 													<span>

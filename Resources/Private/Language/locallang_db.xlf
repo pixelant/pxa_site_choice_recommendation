@@ -21,11 +21,8 @@
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.max_items">
 				<source>Max Items</source>
 			</trans-unit>
-			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.show_splash_page">
-				<source>Show Splash Page</source>
-			</trans-unit>
-			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.splash_page_link">
-				<source>Splash Page Link</source>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.splash_pages">
+				<source>Splash pages links</source>
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_sitechoice.choices">
 				<source>Choices</source>
@@ -65,6 +62,16 @@
 			</trans-unit>
 			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_choice.sitechoice">
 			    <source>Site choice</source>
+			</trans-unit>
+
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_splashpage">
+			    <source>Splash page</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_splashpage.root_page">
+				<source>Root page of splash page</source>
+			</trans-unit>
+			<trans-unit id="tx_pxasitechoicerecommendation_domain_model_splashpage.link_target">
+				<source>Link target</source>
 			</trans-unit>
 		</body>
 	</file>
