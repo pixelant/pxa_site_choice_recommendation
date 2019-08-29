@@ -3,14 +3,18 @@ declare(strict_types=1);
 
 namespace Pixelant\PxaSiteChoiceRecommendation\Domain\Site;
 
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Class RootPage
  * @package Pixelant\PxaSiteChoiceRecommendation\Domain\Site
  */
-class RootPage
+class RootPage implements SingletonInterface
 {
+    /**
+     * @var TypoScriptFrontendController
+     */
     protected $tsfe = null;
 
     /**
@@ -46,7 +50,7 @@ class RootPage
     /**
      * Get root page
      *
-     * @return int|null Uid of root page or 0 if not found
+     * @return int Uid of root page or 0 if not found
      */
     public function getRootPageUid(): int
     {
