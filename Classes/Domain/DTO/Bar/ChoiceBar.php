@@ -11,6 +11,7 @@ use Pixelant\PxaSiteChoiceRecommendation\SignalSlot\DispatcherTrait;
 use Pixelant\PxaSiteChoiceRecommendation\Utility\MainUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * Class ChoiceBar
@@ -170,7 +171,7 @@ class ChoiceBar implements BarInterface
         $topChoice = $this->sortedChoiceList->current();
 
         if ($topChoice->getLink()) {
-            $host = parse_url($topChoice->getLink(), PHP_URL_HOST);
+            $host = $this->parseHostFromChoiceLink($topChoice->getLink());
 
             return $host !== GeneralUtility::getIndpEnv('HTTP_HOST');
         } else {
@@ -229,5 +230,24 @@ class ChoiceBar implements BarInterface
     protected function getRootPage(): RootPage
     {
         return GeneralUtility::makeInstance(RootPage::class);
+    }
+
+    /**
+     * Parse host from choice external ULR
+     *
+     * @param string $url
+     * @return string
+     */
+    protected function parseHostFromChoiceLink(string $url): string
+    {
+        $cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
+        $conf = [
+            'parameter' => $url,
+            'forceAbsoluteUrl' => true
+        ];
+
+        $url = $cObj->typoLink_URL($conf);
+
+        return parse_url($url, PHP_URL_HOST);
     }
 }
