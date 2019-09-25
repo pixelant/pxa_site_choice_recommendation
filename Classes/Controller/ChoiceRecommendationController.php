@@ -83,11 +83,13 @@ class ChoiceRecommendationController extends ActionController
 
             $this->view->assign('choiceBar', $choiceBar);
 
-            $response = [
-                'visible' => $choiceBar->isVisible(),
-                'settings' => $this->settings['jsBar'] ?? [],
-                'html' => $this->view->render()
-            ];
+            if ($choiceBar->isVisible()) {
+                $response = [
+                    'visible' => true,
+                    'settings' => $this->settings['jsBar'] ?? [],
+                    'html' => $this->view->render()
+                ];
+            }
         }
 
         return json_encode($response);
