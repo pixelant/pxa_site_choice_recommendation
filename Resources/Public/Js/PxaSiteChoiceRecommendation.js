@@ -130,6 +130,8 @@ PxaSiteChoiceRecommendation = function () {
                     selectBox.classList.remove(self.getSettingValueOrDefault('selectBoxActiveClass'));
                 }
             };
+        } else {
+            this.markBarAsHidden();
         }
     };
 
