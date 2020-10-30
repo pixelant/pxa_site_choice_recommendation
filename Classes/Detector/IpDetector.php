@@ -54,7 +54,7 @@ class IpDetector implements DetectorInterface
     /**
      * Detect count ISO code by IP
      *
-     * @return array
+     * @return array|null
      * @throws \MaxMind\Db\Reader\InvalidDatabaseException
      */
     public function detect(): ?array

@@ -2,36 +2,23 @@
 defined('TYPO3_MODE') || die('Access denied.');
 
 return (function () {
-    $typo3Version = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
 
-    if (version_compare($typo3Version->getVersion(), '9.0', '>')) {
-        $llCore = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
-        $hidden = [
-            'exclude' => true,
-            'label' => $llCore . 'LGL.visible',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'items' => [
-                    [
-                        0 => '',
-                        1 => '',
-                        'invertStateDisplay' => true
-                    ]
-                ],
-            ]
-        ];
-    } else {
-        $llCore = 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:';
-        $hidden = [
-            'exclude' => true,
-            'label' => $llCore . 'LGL.hidden',
-            'config' => [
-                'type' => 'check',
-                'default' => 0
-            ]
-        ];
-    }
+    $llCore = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
+    $hidden = [
+        'exclude' => true,
+        'label' => $llCore . 'LGL.visible',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '',
+                    1 => '',
+                    'invertStateDisplay' => true
+                ]
+            ],
+        ]
+    ];
 
     return [
         'ctrl' => [

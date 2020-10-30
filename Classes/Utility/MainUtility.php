@@ -38,15 +38,8 @@ class MainUtility
             return $runtimeCache->get($cacheHash);
         }
 
-        $typo3Version = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
-
-        if (version_compare($typo3Version->getVersion(), '9.0', '<')) {
-            $table = 'pages_language_overlay';
-            $fieldName = 'pid';
-        } else {
-            $table = 'pages';
-            $fieldName = $GLOBALS['TCA']['pages']['ctrl']['transOrigPointerField'];
-        }
+        $table = 'pages';
+        $fieldName = $GLOBALS['TCA']['pages']['ctrl']['transOrigPointerField'];
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
         $queryBuilder

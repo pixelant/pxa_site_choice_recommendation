@@ -309,13 +309,10 @@ class Choice extends AbstractEntity
             ];
 
             $contentObject = GeneralUtility::makeInstance(ContentObjectRenderer::class);
-            $typo3Version = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
 
             // If not external URL add language parameter
             if (!$externalUrl) {
-                $params += version_compare($typo3Version->getVersion(), '9.0', '<')
-                    ? ['additionalParams' => '&L=' . $this->getLanguageLayerUid()]
-                    : ['language' => $this->getLanguageLayerUid()];
+                $params += ['language' => $this->getLanguageLayerUid()];
             }
 
             $url = $contentObject->typoLink_URL($params);
