@@ -9,7 +9,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class IpLanguageDetector
- * @package Pixelat\PxaSiteChoiceRecommendation\Detector
+ * @package Pixelant\PxaSiteChoiceRecommendation\Detector
  */
 class IpDetector implements DetectorInterface
 {
@@ -54,7 +54,7 @@ class IpDetector implements DetectorInterface
     /**
      * Detect count ISO code by IP
      *
-     * @return string
+     * @return array
      * @throws \MaxMind\Db\Reader\InvalidDatabaseException
      */
     public function detect(): ?array

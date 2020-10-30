@@ -211,7 +211,8 @@ return (function () {
                     'foreign_table_where' => 'ORDER BY sys_language.sorting',
                     'items' => [
                         ['LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.none', 0],
-                    ]
+                    ],
+                    'default' => 0
                 ]
             ],
 
@@ -224,7 +225,8 @@ return (function () {
                     'foreign_table_where' => 'AND tx_pxasitechoicerecommendation_domain_model_sitechoice.deleted=0',
                     'items' => [
                         ['LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.none', 0],
-                    ]
+                    ],
+                    'default' => 0
                 ]
             ],
         ],
