@@ -2,7 +2,9 @@
 defined('TYPO3_MODE') || die('Access denied.');
 
 return (function () {
-    if (version_compare(TYPO3_version, '9.0', '>')) {
+    $typo3Version = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+
+    if (version_compare($typo3Version->getVersion(), '9.0', '>')) {
         $llCore = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
         $hidden = [
             'exclude' => true,

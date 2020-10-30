@@ -38,7 +38,9 @@ class MainUtility
             return $runtimeCache->get($cacheHash);
         }
 
-        if (version_compare(TYPO3_version, '9.0', '<')) {
+        $typo3Version = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+
+        if (version_compare($typo3Version->getVersion(), '9.0', '<')) {
             $table = 'pages_language_overlay';
             $fieldName = 'pid';
         } else {
