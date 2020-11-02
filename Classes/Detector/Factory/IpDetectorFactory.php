@@ -10,7 +10,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class IpLocaleDetectorFactory
- * @package Pixelat\PxaSiteChoiceRecommendation\Detector
+ * @package Pixelant\PxaSiteChoiceRecommendation\Detector
  */
 class IpDetectorFactory implements DetectorFactoryInterface
 {
@@ -52,9 +52,7 @@ class IpDetectorFactory implements DetectorFactoryInterface
             return GeneralUtility::makeInstance(ExtensionConfiguration::class)
                 ->get('pxa_site_choice_recommendation', 'countryDbPath');
         } else {
-            $extensionConfiguration = unserialize(
-                $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['pxa_site_choice_recommendation'] ?? ''
-            );
+            $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('pxa_site_choice_recommendation') ?? '';
 
             if (is_array($extensionConfiguration)) {
                 return $extensionConfiguration['countryDbPath'] ?? '';

@@ -2,36 +2,24 @@
 defined('TYPO3_MODE') || die('Access denied.');
 
 return (function () {
-    if (version_compare(TYPO3_version, '9.0', '>')) {
-        $llCore = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
-        $hidden = [
-            'exclude' => true,
-            'label' => $llCore . 'LGL.visible',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'items' => [
-                    [
-                        0 => '',
-                        1 => '',
-                        'invertStateDisplay' => true
-                    ]
-                ],
-            ]
-        ];
-        $appendRootPageWhere = ' AND pages.sys_language_uid=0';
-    } else {
-        $llCore = 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:';
-        $hidden = [
-            'exclude' => true,
-            'label' => $llCore . 'LGL.hidden',
-            'config' => [
-                'type' => 'check',
-                'default' => 0
-            ]
-        ];
-        $appendRootPageWhere = '';
-    }
+
+    $llCore = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
+    $hidden = [
+        'exclude' => true,
+        'label' => $llCore . 'LGL.visible',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '',
+                    1 => '',
+                    'invertStateDisplay' => true
+                ]
+            ],
+        ]
+    ];
+    $appendRootPageWhere = ' AND pages.sys_language_uid=0';
 
     return [
         'ctrl' => [

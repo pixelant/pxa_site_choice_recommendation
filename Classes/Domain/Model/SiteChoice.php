@@ -45,7 +45,6 @@ class SiteChoice extends AbstractEntity
      * Available choices
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice>
-     * @cascade remove
      */
     protected $choices = null;
 
@@ -53,7 +52,6 @@ class SiteChoice extends AbstractEntity
      * Available splash pages
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaSiteChoiceRecommendation\Domain\Model\SplashPage>
-     * @cascade remove
      */
     protected $splashPages = null;
 

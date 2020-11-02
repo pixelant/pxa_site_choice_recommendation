@@ -2,34 +2,23 @@
 defined('TYPO3_MODE') || die('Access denied.');
 
 return (function () {
-    if (version_compare(TYPO3_version, '9.0', '>')) {
-        $llCore = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
-        $hidden = [
-            'exclude' => true,
-            'label' => $llCore . 'LGL.visible',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'items' => [
-                    [
-                        0 => '',
-                        1 => '',
-                        'invertStateDisplay' => true
-                    ]
-                ],
-            ]
-        ];
-    } else {
-        $llCore = 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:';
-        $hidden = [
-            'exclude' => true,
-            'label' => $llCore . 'LGL.hidden',
-            'config' => [
-                'type' => 'check',
-                'default' => 0
-            ]
-        ];
-    }
+
+    $llCore = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
+    $hidden = [
+        'exclude' => true,
+        'label' => $llCore . 'LGL.visible',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '',
+                    1 => '',
+                    'invertStateDisplay' => true
+                ]
+            ],
+        ]
+    ];
 
     return [
         'ctrl' => [
@@ -211,7 +200,8 @@ return (function () {
                     'foreign_table_where' => 'ORDER BY sys_language.sorting',
                     'items' => [
                         ['LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.none', 0],
-                    ]
+                    ],
+                    'default' => 0
                 ]
             ],
 
@@ -224,7 +214,8 @@ return (function () {
                     'foreign_table_where' => 'AND tx_pxasitechoicerecommendation_domain_model_sitechoice.deleted=0',
                     'items' => [
                         ['LLL:EXT:pxa_site_choice_recommendation/Resources/Private/Language/locallang_db.xlf:tx_pxasitechoicerecommendation_domain_model_choice.none', 0],
-                    ]
+                    ],
+                    'default' => 0
                 ]
             ],
         ],

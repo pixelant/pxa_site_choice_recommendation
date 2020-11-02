@@ -38,13 +38,8 @@ class MainUtility
             return $runtimeCache->get($cacheHash);
         }
 
-        if (version_compare(TYPO3_version, '9.0', '<')) {
-            $table = 'pages_language_overlay';
-            $fieldName = 'pid';
-        } else {
-            $table = 'pages';
-            $fieldName = $GLOBALS['TCA']['pages']['ctrl']['transOrigPointerField'];
-        }
+        $table = 'pages';
+        $fieldName = $GLOBALS['TCA']['pages']['ctrl']['transOrigPointerField'];
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
         $queryBuilder
