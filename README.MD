@@ -2,11 +2,11 @@
 
 ## What does it do?
 Suggest localized version of site depends on user location and user language.
-It will show bar on top of the page with possibility to choose site language. Select box options are sorted by priority calculated by checking user location and accept language. 
+It will show bar on top of the page with possibility to choose site language. Select box options are sorted by priority calculated by checking user location and accept language.
 
 ## How to install it
 Like a regular extension you need to do a few steps.
-1. Composer install 
+1. Composer install
     `composer require pixelant/pxa-site-choice-recommendation`
 2. Go to extension manager to isntall extension.
 3. Include TypoScript. There are two options to include:
@@ -36,11 +36,14 @@ Swedish title|sv_SE
 Ukrainian title|uk_UA
 ```
 - *Flag* - flag icon to show in select box and splash page
-- *Select country* - select country. This field represents ISO code (for ex. "us" for USA). This code will be used when check if choice match by user IP. [ISO codes](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) 
+- *Select country* - select country. This field represents ISO code (for ex. "us" for USA). This code will be used when check if choice match by user IP. [ISO codes](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
 - *Select language* - select language from list. This field represents short ISO code (for ex. "en" for English). This code will be used for check by user language.
 - *Link* - **if choice target to external url**
 - *Language layer* - **if choice should lead to site langauge layer**. *Link* need to be empty if language layer is used.
 
 ## Expected results
 After TypoScript is included and *Site Choice Configuration* is connected to root page, you should get bar with proposal of best matching country / region based on location.
-**Note:** bar will remain invisible in case you already has visited website localization version that best match you location/language. 
+**Note:** bar will remain invisible in case you already has visited website localization version that best match you location/language.
+
+This product includes GeoLite2 data created by MaxMind, available from
+<a href="https://www.maxmind.com">https://www.maxmind.com</a>.
