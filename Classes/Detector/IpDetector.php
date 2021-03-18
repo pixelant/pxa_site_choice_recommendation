@@ -5,6 +5,7 @@ namespace Pixelant\PxaSiteChoiceRecommendation\Detector;
 
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
+use InvalidArgumentException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -62,8 +63,14 @@ class IpDetector implements DetectorInterface
         if ($this->countryIsoCode === null) {
             try {
                 $record = $this->reader->country($this->ip);
+                if (empty($record->country->isoCode)) {
+                    return null;
+                }
+
                 $this->countryIsoCode = strtolower($record->country->isoCode);
             } catch (AddressNotFoundException $exception) {
+                return null;
+            } catch (InvalidArgumentException $exception) {
                 return null;
             }
         }
