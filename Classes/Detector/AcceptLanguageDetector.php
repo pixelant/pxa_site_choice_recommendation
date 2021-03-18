@@ -60,7 +60,8 @@ class AcceptLanguageDetector implements DetectorInterface
      */
     protected function parseAcceptLanguageString(string $header): array
     {
-        $languages = explode(',', $header);
+        $languages = GeneralUtility::trimExplode(',', $header, true);
+
         $result = [];
         foreach ($languages as $language) {
             // explode priority string "uk-UA;q=0.7" or "en;q=0.5"
