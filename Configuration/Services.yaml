@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Pixelant\PxaSiteChoiceRecommendation\:
+    resource: '../Classes/*'
+
+  Pixelant\PxaSiteChoiceRecommendation\Detector\Event\AcceptLanguageDetectorFactoryEvent:
+    tags:
+      - name: event.listener
+        identifier: 'acceptLanguageDetectorFactoryEvent'
+        event: Pixelant\PxaSiteChoiceRecommendation\Detector\Event\AddDetectorFactoryEvent

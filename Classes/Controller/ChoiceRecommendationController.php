@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Pixelant\PxaSiteChoiceRecommendation\Controller;
 
-use Pixelant\PxaSiteChoiceRecommendation\Detector\Factory\AcceptLanguageDetectorFactory;
-use Pixelant\PxaSiteChoiceRecommendation\Detector\Factory\IpDetectorFactory;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Pixelant\PxaSiteChoiceRecommendation\Detector\Event\AddDetectorFactoryEvent;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\DTO\Bar\ChoiceBarFactory;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Repository\SiteChoiceRepository;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Site\RootPage;
-use Pixelant\PxaSiteChoiceRecommendation\SignalSlot\DispatcherTrait;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -19,8 +19,6 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  */
 class ChoiceRecommendationController extends ActionController
 {
-    use DispatcherTrait;
-
     /**
      * @var SiteChoiceRepository
      */
@@ -32,14 +30,9 @@ class ChoiceRecommendationController extends ActionController
     protected $rootPage = null;
 
     /**
-     * Available language detectors creators
-     *
-     * @var array
+     * @var EventDispatcherInterface
      */
-    protected $detectorFactoryCreators = [
-        IpDetectorFactory::class,
-        AcceptLanguageDetectorFactory::class
-    ];
+    protected $eventDispatcher;
 
     /**
      * Inject repository
@@ -59,6 +52,14 @@ class ChoiceRecommendationController extends ActionController
     public function injectRootPage(RootPage $rootPage): void
     {
         $this->rootPage = $rootPage;
+    }
+
+    /**
+     * @param EventDispatcher $eventDispatcher
+     */
+    public function injectDispatcher(EventDispatcherInterface $eventDispatcher): void
+    {
+        $this->eventDispatcher = $eventDispatcher ?? GeneralUtility::makeInstance(EventDispatcher::class);
     }
 
     /**
@@ -115,18 +116,12 @@ class ChoiceRecommendationController extends ActionController
      * Return array of factory creators of availble locale and country ISO code detectors
      *
      * @return array
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      */
     protected function getAvailableDetectorFactoryCreators()
     {
-        $detectorFactoryCreators = $this->detectorFactoryCreators;
-
-        $signalArguments = [
-            'detectorFactoryCreators' => &$detectorFactoryCreators
-        ];
-
-        $this->emitSignal(__CLASS__, 'beforeReturningAvailableDetectorFactoryCreators', $signalArguments);
+        $event = new AddDetectorFactoryEvent();
+        $this->eventDispatcher->dispatch($event);
+        $detectorFactoryCreators = $event->getDetectorFactoryCreators();
 
         return $detectorFactoryCreators;
     }

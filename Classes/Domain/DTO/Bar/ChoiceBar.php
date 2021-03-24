@@ -7,7 +7,6 @@ use Pixelant\PxaSiteChoiceRecommendation\Domain\Model\Choice;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Model\SiteChoice;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Model\SplashPage;
 use Pixelant\PxaSiteChoiceRecommendation\Domain\Site\RootPage;
-use Pixelant\PxaSiteChoiceRecommendation\SignalSlot\DispatcherTrait;
 use Pixelant\PxaSiteChoiceRecommendation\Utility\MainUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
@@ -19,8 +18,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 class ChoiceBar implements BarInterface
 {
-    use DispatcherTrait;
-
     /**
      * @var SiteChoice
      */
@@ -93,8 +90,6 @@ class ChoiceBar implements BarInterface
             foreach ($choicesWithPriority as $choice) {
                 $this->sortedChoiceList->attach($choice);
             }
-
-            $this->emitSignal(__CLASS__, 'afterChoicesSortingByPriority', [$this->sortedChoiceList]);
         }
     }
 
