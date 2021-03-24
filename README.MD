@@ -4,6 +4,8 @@
 Suggest localized version of site depends on user location and user language.
 It will show bar on top of the page with possibility to choose site language. Select box options are sorted by priority calculated by checking user location and accept language.
 
+**Note:** To get option based on user location, a EventListner needs to be created in a separate extension.
+
 ## How to install it
 Like a regular extension you need to do a few steps.
 1. Composer install
@@ -45,5 +47,63 @@ Ukrainian title|uk_UA
 After TypoScript is included and *Site Choice Configuration* is connected to root page, you should get bar with proposal of best matching country / region based on location.
 **Note:** bar will remain invisible in case you already has visited website localization version that best match you location/language.
 
-This product includes GeoLite2 data created by MaxMind, available from
+## Enable choices based on user location
+
+Extension has "built in" support to suggest options based on user location.
+
+To enable it, you will need to create a EventListner in a separate extension and also download GeoLite2-Country.mmdb from MaxMind, available from
 <a href="https://www.maxmind.com">https://www.maxmind.com</a>.
+
+Example:
+
+### 1. Registering the event listener ###
+
+Following is an example of how to enable the IPDetecor.
+
+In file `your_extension_name/Configuration/Services.yaml` file add following:
+
+```php
+
+  VendorName\YourExtensionName\EventListener\IpDetectorFactoryEvent:
+    tags:
+      - name: event.listener
+        identifier: 'yourExtensionNameIpDetectorFactoryEvent'
+        event: Pixelant\PxaSiteChoiceRecommendation\Detector\Event\AddDetectorFactoryEvent
+        after: acceptLanguageDetectorFactoryEvent
+
+```
+
+### 2. The event listener class ###
+
+Create file `your_extension_name/Classes/EventListener/IpDetectorFactoryEvent.php` file add following:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace VendorName\YourExtensionName\EventListener;
+
+use Pixelant\PxaSiteChoiceRecommendation\Detector\Event\AddDetectorFactoryEvent;
+use Pixelant\PxaSiteChoiceRecommendation\Detector\Factory\IpDetectorFactory;
+
+/**
+ * Adds IpDetector to Detectors.
+ */
+final class IpDetectorFactoryEvent
+{
+    public function __invoke(AddDetectorFactoryEvent $event)
+    {
+        // Add IP Detector.
+        $event->addDetectorFactoryCreators(IpDetectorFactory::class);
+        // Set path to GeoLite2-Country.mmdb.
+        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['pxa_site_choice_recommendation']['countryDbPath']
+            = 'EXT:your_extension_name/Resources/Private/GeoIp2/GeoLite2-Country.mmdb';
+    }
+}
+
+```
+
+### 3. GeoLite2-Country dababase ###
+
+Download GeoLite2-Country.mmdb from MaxMind and save in folder: `your_extension_name/Resources/Private/GeoIp2/GeoLite2-Country.mmdb`.
